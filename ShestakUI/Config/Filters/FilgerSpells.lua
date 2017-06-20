@@ -577,8 +577,6 @@ C["filger_spells"] = {
 			{spellID = 200851, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Ironfur
 			{spellID = 192081, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Mark of Ursol
-			{spellID = 192083, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Pulverize
 			{spellID = 158792, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Lunar Empowerment
@@ -1218,8 +1216,6 @@ C["filger_spells"] = {
 			{spellID = 108839, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Evanesce
 			{spellID = 157913, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Alter Time
-			{spellID = 110909, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Temporal Shield
 			{spellID = 198111, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Mirror Image
@@ -2606,8 +2602,6 @@ C["filger_spells"] = {
 			{spellID = 204945, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Landslide
 			{spellID = 202004, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Boulderfist
-			{spellID = 218825, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Stone Bulwark
 			{spellID = 114893, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Ancestral Guidance
@@ -3817,7 +3811,7 @@ C["filger_spells"] = {
 			-- Gul'dan
 			-- Flames of Sargeras
 			{spellID = 221606, unitID = "player", caster = "all", filter = "DEBUFF"},
-			
+
 			-- Trial of Valor
 			-- Odyn
 			-- Storm of Justice
@@ -3997,8 +3991,6 @@ C["filger_spells"] = {
 			{spellID = 113862, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Temporal Shield
 			{spellID = 198111, unitID = "target", caster = "all", filter = "BUFF"},
-			-- Alter Time
-			{spellID = 110909, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Evanesce
 			{spellID = 157913, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Evocation
