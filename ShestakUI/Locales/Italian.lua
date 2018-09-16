@@ -97,6 +97,7 @@ L_MINIMAP_CALENDAR = "Calendario"
 L_MINIMAP_HEAL_LAYOUT = "Click-Sinistro - Disposizione da Guaritore"
 L_MINIMAP_DPS_LAYOUT = "Click-Destro - Disposizione d'Assaltatore"
 L_MINIMAP_BLIZZ_LAYOUT = "Click-Centrale - Disposizione Blizzard"
+L_MINIMAP_ARTIFACT = "Right click to use" -- Needs review
 
 -- Chat
 L_CHAT_WHISPER = "Da"
@@ -166,21 +167,6 @@ L_BIND_CLEARED = "Tutte le assegnazioni tasti sono state cancellate per"
 L_BIND_BINDING = "Assegnazione"
 L_BIND_KEY = "Tasto"
 L_BIND_NO_SET = "Nessuna assegnazione impostata"
-
--- BG stats
-L_DATATEXT_BASESASSAULTED = "Basi assaltate:"
-L_DATATEXT_BASESDEFENDED = "Basi difese:"
-L_DATATEXT_TOWERSASSAULTED = "Torri assaltate:"
-L_DATATEXT_TOWERSDEFENDED = "Torri difese:"
-L_DATATEXT_FLAGSCAPTURED = "Bandiere catturate:"
-L_DATATEXT_FLAGSRETURNED = "Bandiere recuperate:"
-L_DATATEXT_GRAVEYARDSASSAULTED = "Cimiteri assaltati:"
-L_DATATEXT_GRAVEYARDSDEFENDED = "Cimiteri difesi"
-L_DATATEXT_DEMOLISHERSDESTROYED = "Demolitori distrutti:"
-L_DATATEXT_GATESDESTROYED = "Cancelli distrutti:"
-L_DATATEXT_ORB_POSSESSIONS = "Diamanti posseduti:"
-L_DATATEXT_VICTORY_POINTS = "Punti vittoria:"
-L_DATATEXT_CARTS_CONTROLLED = "Carrelli controllati:"
 
 -- Info text
 L_INFO_ERRORS = "Nessun errore ancora."

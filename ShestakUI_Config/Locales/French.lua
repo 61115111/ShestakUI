@@ -99,7 +99,6 @@ L_GUI_SKINS_NUG_RUNNING = "Activer la personnalisation pour NugRunning"
 L_GUI_SKINS_OVALE = "Activer la personnalisation pour OvaleSpellPriority"
 L_GUI_SKINS_CLIQUE = "Activer la personnalisation pour Clique"
 L_GUI_SKINS_ACE3 = "Activer la personnalisation des éléments pour Ace3"
-L_GUI_SKINS_PP = "Activer la personnalisation pour PallyPower"
 L_GUI_SKINS_CAPPING = "Activer la personnalisation pour Capping"
 L_GUI_SKINS_COOL_LINE = "Activer la personnalisation pour CoolLine"
 L_GUI_SKINS_ATLASLOOT = "Activer la personnalisation pour AtlasLoot"
@@ -218,7 +217,6 @@ L_GUI_TOOLTIP_WHO_TARGETTING = "Afficher qui cible actuellement l'unité qui est
 L_GUI_TOOLTIP_ITEM_COUNT = "Afficher le nombre d'objets possédés"
 L_GUI_TOOLTIP_UNIT_ROLE = "Afficher les rôles"
 L_GUI_TOOLTIP_INSTANCE_LOCK = "Afficher le verrouillage de votre instance"
-L_GUI_TOOLTIP_ITEM_TRANSMOGRIFY = "Affiche les objets qui ne peuvent pas être transmogrifés"
 
 -- Chat options
 L_GUI_CHAT_ENABLE = "Activer la fenêtre de dialogue"
@@ -289,11 +287,13 @@ L_GUI_NAMEPLATE_NEAR_COLOR = "Perte/Gain de couleur de menace"
 L_GUI_NAMEPLATE_BAD_COLOR = "Mauvaise couleur de menace, dépend de si vous êtes un tank ou dps/heal"
 L_GUI_NAMEPLATE_OFFTANK_COLOR = "Offtank threat color" -- Need review
 L_GUI_NAMEPLATE_SHOW_DEBUFFS = "Affiche les affaiblissements (Les noms abrégés doivent être désactivés)"
+L_GUI_NAMEPLATE_SHOW_BUFFS = "Show buffs above player nameplate (from the list)" -- Need review
 L_GUI_NAMEPLATE_DEBUFFS_SIZE = "Taille des affaiblissements"
 L_GUI_NAMEPLATE_HEALER_ICON = "Affiche une icône de soigneur sur toutes les barres de vie des soigneurs ennemis dans les champs de bataille"
 L_GUI_NAMEPLATE_TOTEM_ICONS = "Show icon above enemy totems nameplate" -- Need review
 
 -- ActionBar options
+L_GUI_ACTIONBAR = "Action Bars" -- Need review
 L_GUI_ACTIONBAR_ENABLE = "Activer les barres d'action"
 L_GUI_ACTIONBAR_HOTKEY = "Afficher le texte des macros"
 L_GUI_ACTIONBAR_MACRO = "Afficher le nom des macros sur les touches"
@@ -307,12 +307,12 @@ L_GUI_ACTIONBAR_HIDE_HIGHLIGHT = "Cache la surbrillance des effets à déclenche
 L_GUI_ACTIONBAR_BOTTOMBARS = "Nombre de barres d'action en bas (1, 2 ou 3)"
 L_GUI_ACTIONBAR_RIGHTBARS = "Nombre de barres d'action à droite (0, 1, 2 ou 3)"
 L_GUI_ACTIONBAR_RIGHTBARS_MOUSEOVER = "Barres de droite en 'mouseover'"
-L_GUI_ACTIONBAR_PETBAR_MOUSEOVER = "Barre du familier en 'mouseover'(uniquement pour la barre horizontale)"
 L_GUI_ACTIONBAR_PETBAR_HIDE = "Cacher la barre du familier"
 L_GUI_ACTIONBAR_PETBAR_HORIZONTAL = "Activer la barre du familier horizontale"
-L_GUI_ACTIONBAR_STANCEBAR_MOUSEOVER = "Changeforme/Posture/barre de totems en 'mouseover'"
+L_GUI_ACTIONBAR_PETBAR_MOUSEOVER = "Barre du familier en 'mouseover'(uniquement pour la barre horizontale)"
 L_GUI_ACTIONBAR_STANCEBAR_HIDE = "Cacher changeforme"
 L_GUI_ACTIONBAR_STANCEBAR_HORIZONTAL = "Activer la barre de posture horizontale"
+L_GUI_ACTIONBAR_STANCEBAR_MOUSEOVER = "Changeforme/Posture/barre de totems en 'mouseover'" -- Need review
 L_GUI_ACTIONBAR_MICROMENU = "Active le Micro menu"
 L_GUI_ACTIONBAR_MICROMENU_MOUSEOVER = "Affiche le Micro menu au survol de la souris"
 
@@ -376,7 +376,6 @@ L_GUI_UF_PLUGINS_GCD = "Scintillement du GCD"
 L_GUI_UF_PLUGINS_SWING = "Barre d'attaque automatique / tir automatique"
 L_GUI_UF_PLUGINS_REPUTATION_BAR = "Barre de réputation"
 L_GUI_UF_PLUGINS_EXPERIENCE_BAR = "Barre d'expérience"
-L_GUI_UF_PLUGINS_FRIENDSHIP_BAR = "Barre de réputation/amitié"
 L_GUI_UF_PLUGINS_ARTIFACT_BAR = "Artifact Power bar" -- Need review
 L_GUI_UF_PLUGINS_SMOOTH_BAR = "Lissage des barres"
 L_GUI_UF_PLUGINS_ENEMY_SPEC = "Afficher les talent de l'ennemi"

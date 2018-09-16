@@ -95,6 +95,28 @@ RoleUpdater:RegisterEvent("PLAYER_TALENT_UPDATE")
 RoleUpdater:SetScript("OnEvent", CheckRole)
 
 ----------------------------------------------------------------------------------------
+--	Player's buff check
+----------------------------------------------------------------------------------------
+T.CheckPlayerBuff = function(spell)
+	for i = 1, 40 do
+		local name, _, _, _, _, _, unitCaster = UnitBuff("player", i)
+		if not name then break end
+		if name == spell then
+			return i, unitCaster
+		end
+	end
+	return nil
+end
+
+----------------------------------------------------------------------------------------
+--	Pet Battle Hider
+----------------------------------------------------------------------------------------
+T_PetBattleFrameHider = CreateFrame("Frame", "ShestakUI_PetBattleFrameHider", UIParent, "SecureHandlerStateTemplate")
+T_PetBattleFrameHider:SetAllPoints()
+T_PetBattleFrameHider:SetFrameStrata("LOW")
+RegisterStateDriver(T_PetBattleFrameHider, "visibility", "[petbattle] hide; show")
+
+----------------------------------------------------------------------------------------
 --	UTF functions
 ----------------------------------------------------------------------------------------
 T.UTF = function(string, i, dots)
@@ -392,15 +414,16 @@ function T.SkinEditBox(frame, width, height)
 end
 
 function T.SkinDropDownBox(frame, width)
-	local button = _G[frame:GetName().."Button"] or _G[frame:GetName().."_Button"]
+	local button = _G[frame:GetName()] and (_G[frame:GetName().."Button"] or _G[frame:GetName().."_Button"]) or frame.Button
+	local text = _G[frame:GetName()] and _G[frame:GetName().."Text"] or frame.Text
 	if not width then width = 155 end
 
 	frame:StripTextures()
 	frame:SetWidth(width)
 
-	if _G[frame:GetName().."Text"] then
-		_G[frame:GetName().."Text"]:ClearAllPoints()
-		_G[frame:GetName().."Text"]:SetPoint("RIGHT", button, "LEFT", -2, 0)
+	if text then
+		text:ClearAllPoints()
+		text:SetPoint("RIGHT", button, "LEFT", -2, 0)
 	end
 
 	button:ClearAllPoints()
@@ -510,36 +533,36 @@ function T.SkinSlider(f)
 	end
 	bd:SetFrameLevel(f:GetFrameLevel() - 1)
 
-	local slider = select(4, f:GetRegions())
-	slider:SetTexture("Interface\\CastingBar\\UI-CastingBar-Spark")
-	slider:SetBlendMode("ADD")
+	f:SetThumbTexture("Interface\\CastingBar\\UI-CastingBar-Spark")
+	f:GetThumbTexture():SetBlendMode("ADD")
 end
 
 function T.SkinIconSelectionFrame(frame, numIcons, buttonNameTemplate, frameNameOverride)
 	local frameName = frameNameOverride or frame:GetName()
 	local scrollFrame = _G[frameName.."ScrollFrame"]
 	local editBox = _G[frameName.."EditBox"]
-	local okayButton = _G[frameName.."OkayButton"] or _G[frameName.."Okay"]
-	local cancelButton = _G[frameName.."CancelButton"] or _G[frameName.."Cancel"]
+	local okayButton = _G[frameName.."OkayButton"] or _G[frameName.."Okay"] or frame.BorderBox.OkayButton
+	local cancelButton = _G[frameName.."CancelButton"] or _G[frameName.."Cancel"] or frame.BorderBox.CancelButton
 
 	frame:StripTextures()
 	frame.BorderBox:StripTextures()
+	frame:CreateBackdrop("Transparent")
+	frame.backdrop:SetPoint("TOPLEFT", 3, 1)
+	frame:SetHeight(frame:GetHeight() + 13)
+
 	scrollFrame:StripTextures()
 	scrollFrame:CreateBackdrop("Overlay")
-	scrollFrame.backdrop:SetPoint("TOPLEFT", 15, 4)
-	scrollFrame.backdrop:SetPoint("BOTTOMRIGHT", 28, -8)
-	editBox:DisableDrawLayer("BACKGROUND")
-
-	frame:SetTemplate("Transparent")
-	frame:SetHeight(frame:GetHeight() + 10)
-	scrollFrame:SetHeight(scrollFrame:GetHeight() + 10)
+	scrollFrame.backdrop:SetPoint("TOPLEFT", 15, 5)
+	scrollFrame.backdrop:SetPoint("BOTTOMRIGHT", 31, -8)
+	scrollFrame:SetHeight(scrollFrame:GetHeight() + 12)
 
 	okayButton:SkinButton()
 	cancelButton:SkinButton()
-	T.SkinEditBox(editBox)
-
 	cancelButton:ClearAllPoints()
 	cancelButton:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -5, 5)
+
+	editBox:DisableDrawLayer("BACKGROUND")
+	T.SkinEditBox(editBox)
 
 	if buttonNameTemplate then
 		for i = 1, numIcons do
@@ -836,7 +859,7 @@ T.PreUpdatePower = function(power, unit)
 	end
 end
 
-T.PostUpdatePower = function(power, unit, min, max)
+T.PostUpdatePower = function(power, unit, cur, min, max)
 	if unit and unit:find("arena%dtarget") then return end
 	local self = power:GetParent()
 	local pType, pToken = UnitPowerType(unit)
@@ -857,82 +880,82 @@ T.PostUpdatePower = function(power, unit, min, max)
 	elseif UnitIsDead(unit) or UnitIsGhost(unit) or max == 0 then
 		power.value:SetText()
 	else
-		if min ~= max then
+		if cur ~= max then
 			if pType == 0 and pToken ~= "POWER_TYPE_DINO_SONIC" then
 				if unit == "target" then
 					if C.unitframe.show_total_value == true then
 						if C.unitframe.color_value == true then
-							power.value:SetFormattedText("%s |cffD7BEA5-|r %s", T.ShortValue(max - (max - min)), T.ShortValue(max))
+							power.value:SetFormattedText("%s |cffD7BEA5-|r %s", T.ShortValue(max - (max - cur)), T.ShortValue(max))
 						else
-							power.value:SetFormattedText("|cffffffff%s - %s|r", T.ShortValue(max - (max - min)), T.ShortValue(max))
+							power.value:SetFormattedText("|cffffffff%s - %s|r", T.ShortValue(max - (max - cur)), T.ShortValue(max))
 						end
 					else
 						if C.unitframe.color_value == true then
-							power.value:SetFormattedText("%d%% |cffD7BEA5-|r %s", floor(min / max * 100), T.ShortValue(max - (max - min)))
+							power.value:SetFormattedText("%d%% |cffD7BEA5-|r %s", floor(cur / max * 100), T.ShortValue(max - (max - cur)))
 						else
-							power.value:SetFormattedText("|cffffffff%d%% - %s|r", floor(min / max * 100), T.ShortValue(max - (max - min)))
+							power.value:SetFormattedText("|cffffffff%d%% - %s|r", floor(cur / max * 100), T.ShortValue(max - (max - cur)))
 						end
 					end
 				elseif (unit == "player" and power:GetAttribute("normalUnit") == "pet") or unit == "pet" then
 					if C.unitframe.show_total_value == true then
 						if C.unitframe.color_value == true then
-							power.value:SetFormattedText("%s |cffD7BEA5-|r %s", T.ShortValue(max - (max - min)), T.ShortValue(max))
+							power.value:SetFormattedText("%s |cffD7BEA5-|r %s", T.ShortValue(max - (max - cur)), T.ShortValue(max))
 						else
-							power.value:SetFormattedText("%s |cffffffff-|r %s", T.ShortValue(max - (max - min)), T.ShortValue(max))
+							power.value:SetFormattedText("%s |cffffffff-|r %s", T.ShortValue(max - (max - cur)), T.ShortValue(max))
 						end
 					else
 						if C.unitframe.color_value == true then
-							power.value:SetFormattedText("%d%%", floor(min / max * 100))
+							power.value:SetFormattedText("%d%%", floor(cur / max * 100))
 						else
-							power.value:SetFormattedText("|cffffffff%d%%|r", floor(min / max * 100))
+							power.value:SetFormattedText("|cffffffff%d%%|r", floor(cur / max * 100))
 						end
 					end
 				elseif unit and (unit:find("arena%d") or unit:find("boss%d")) then
 					if C.unitframe.color_value == true then
-						power.value:SetFormattedText("|cffD7BEA5%d%% - %s|r", floor(min / max * 100), T.ShortValue(max - (max - min)))
+						power.value:SetFormattedText("|cffD7BEA5%d%% - %s|r", floor(cur / max * 100), T.ShortValue(max - (max - cur)))
 					else
-						power.value:SetFormattedText("|cffffffff%d%% - %s|r", floor(min / max * 100), T.ShortValue(max - (max - min)))
+						power.value:SetFormattedText("|cffffffff%d%% - %s|r", floor(cur / max * 100), T.ShortValue(max - (max - cur)))
 					end
 				elseif self:GetParent():GetName():match("oUF_PartyDPS") then
 					if C.unitframe.color_value == true then
-						power.value:SetFormattedText("%s |cffD7BEA5-|r %d%%", T.ShortValue(max - (max - min)), floor(min / max * 100))
+						power.value:SetFormattedText("%s |cffD7BEA5-|r %d%%", T.ShortValue(max - (max - cur)), floor(cur / max * 100))
 					else
-						power.value:SetFormattedText("|cffffffff%s - %d%%|r", T.ShortValue(max - (max - min)), floor(min / max * 100))
+						power.value:SetFormattedText("|cffffffff%s - %d%%|r", T.ShortValue(max - (max - cur)), floor(cur / max * 100))
 					end
 				else
 					if C.unitframe.show_total_value == true then
 						if C.unitframe.color_value == true then
-							power.value:SetFormattedText("%s |cffD7BEA5-|r %s", T.ShortValue(max - (max - min)), T.ShortValue(max))
+							power.value:SetFormattedText("%s |cffD7BEA5-|r %s", T.ShortValue(max - (max - cur)), T.ShortValue(max))
 						else
-							power.value:SetFormattedText("|cffffffff%s - %s|r", T.ShortValue(max - (max - min)), T.ShortValue(max))
+							power.value:SetFormattedText("|cffffffff%s - %s|r", T.ShortValue(max - (max - cur)), T.ShortValue(max))
 						end
 					else
 						if C.unitframe.color_value == true then
-							power.value:SetFormattedText("%d |cffD7BEA5-|r %d%%", max - (max - min), floor(min / max * 100))
+							power.value:SetFormattedText("%d |cffD7BEA5-|r %d%%", max - (max - cur), floor(cur / max * 100))
 						else
-							power.value:SetFormattedText("|cffffffff%d - %d%%|r", max - (max - min), floor(min / max * 100))
+							power.value:SetFormattedText("|cffffffff%d - %d%%|r", max - (max - cur), floor(cur / max * 100))
 						end
 					end
 				end
 			else
 				if C.unitframe.color_value == true then
-					power.value:SetText(max - (max - min))
+					power.value:SetText(max - (max - cur))
 				else
-					power.value:SetText("|cffffffff"..max - (max - min).."|r")
+					power.value:SetText("|cffffffff"..max - (max - cur).."|r")
 				end
 			end
 		else
 			if unit == "pet" or unit == "target" or (unit and unit:find("arena%d")) or (self:GetParent():GetName():match("oUF_PartyDPS")) then
 				if C.unitframe.color_value == true then
-					power.value:SetText(T.ShortValue(min))
+					power.value:SetText(T.ShortValue(cur))
 				else
-					power.value:SetText("|cffffffff"..T.ShortValue(min).."|r")
+					power.value:SetText("|cffffffff"..T.ShortValue(cur).."|r")
 				end
 			else
 				if C.unitframe.color_value == true then
-					power.value:SetText(min)
+					power.value:SetText(cur)
 				else
-					power.value:SetText("|cffffffff"..min.."|r")
+					power.value:SetText("|cffffffff"..cur.."|r")
 				end
 			end
 		end
@@ -945,7 +968,7 @@ T.UpdateManaLevel = function(self, elapsed)
 	self.elapsed = 0
 
 	if UnitPowerType("player") == 0 then
-		local percMana = UnitMana("player") / UnitManaMax("player") * 100
+		local percMana = UnitPower("player", Enum.PowerType.Mana) / UnitPowerMax("player", Enum.PowerType.Mana) * 100
 		if percMana <= 20 and not UnitIsDeadOrGhost("player") then
 			self.ManaLevel:SetText("|cffaf5050"..MANA_LOW.."|r")
 			Flash(self)
@@ -1025,7 +1048,7 @@ T.UpdatePvPStatus = function(self, elapsed)
 	end
 end
 
-T.UpdateComboPoint = function(self, event, unit)
+T.UpdateComboPoint = function(self, event, unit, powerType)
 	if powerType and powerType ~= 'COMBO_POINTS' then return end
 	if unit == "pet" then return end
 
@@ -1038,7 +1061,7 @@ T.UpdateComboPoint = function(self, event, unit)
 	if (UnitHasVehicleUI("player") or UnitHasVehicleUI("vehicle")) then
 		numMax = MAX_COMBO_POINTS
 	else
-		numMax = UnitPowerMax("player", SPELL_POWER_COMBO_POINTS)
+		numMax = UnitPowerMax("player", Enum.PowerType.ComboPoints)
 		if numMax == 0 then
 			numMax = MAX_COMBO_POINTS
 		end
@@ -1049,24 +1072,10 @@ T.UpdateComboPoint = function(self, event, unit)
 	local s = 0
 
 	if cpoints.numMax ~= numMax then
-		if numMax == 10 then
+		if numMax == 6 then
 			cpoints[6]:Show()
-			cpoints[7]:Show()
-			cpoints[8]:Show()
-			cpoints[9]:Show()
-			cpoints[10]:Show()
-		elseif numMax == 6 then
-			cpoints[6]:Show()
-			cpoints[7]:Hide()
-			cpoints[8]:Hide()
-			cpoints[9]:Hide()
-			cpoints[10]:Hide()
 		else
 			cpoints[6]:Hide()
-			cpoints[7]:Hide()
-			cpoints[8]:Hide()
-			cpoints[9]:Hide()
-			cpoints[10]:Hide()
 		end
 
 		for i = 1, numMax do
@@ -1102,7 +1111,7 @@ T.UpdateComboPoint = function(self, event, unit)
 	end
 end
 
-T.UpdateComboPointOld = function(self, event, unit)
+T.UpdateComboPointTarget = function(self, event, unit, powerType)
 	if powerType and powerType ~= 'COMBO_POINTS' then return end
 	if unit == "pet" then return end
 
@@ -1115,7 +1124,7 @@ T.UpdateComboPointOld = function(self, event, unit)
 		numMax = MAX_COMBO_POINTS
 	else
 		cp = GetComboPoints("player", "target")
-		numMax = UnitPowerMax("player", SPELL_POWER_COMBO_POINTS)
+		numMax = UnitPowerMax("player", Enum.PowerType.ComboPoints)
 		if numMax == 0 then
 			numMax = MAX_COMBO_POINTS
 		end
@@ -1126,24 +1135,10 @@ T.UpdateComboPointOld = function(self, event, unit)
 	local s = 0
 
 	if cpoints.numMax ~= numMax then
-		if numMax == 10 then
+		if numMax == 6 then
 			cpoints[6]:Show()
-			cpoints[7]:Show()
-			cpoints[8]:Show()
-			cpoints[9]:Show()
-			cpoints[10]:Show()
-		elseif numMax == 6 then
-			cpoints[6]:Show()
-			cpoints[7]:Hide()
-			cpoints[8]:Hide()
-			cpoints[9]:Hide()
-			cpoints[10]:Hide()
 		else
 			cpoints[6]:Hide()
-			cpoints[7]:Hide()
-			cpoints[8]:Hide()
-			cpoints[9]:Hide()
-			cpoints[10]:Hide()
 		end
 
 		for i = 1, numMax do
@@ -1199,14 +1194,7 @@ T.UpdateComboPointOld = function(self, event, unit)
 	end
 end
 
-T.UpdateReputationColor = function(self, event, unit, bar)
-	local name, id = GetWatchedFactionInfo()
-	bar:SetStatusBarColor(FACTION_BAR_COLORS[id].r, FACTION_BAR_COLORS[id].g, FACTION_BAR_COLORS[id].b)
-	bar.bg:SetVertexColor(FACTION_BAR_COLORS[id].r, FACTION_BAR_COLORS[id].g, FACTION_BAR_COLORS[id].b, 0.2)
-end
-
 local ticks = {}
-local channelingTicks = T.CastBarTicks
 
 local setBarTicks = function(Castbar, ticknum)
 	for k, v in pairs(ticks) do
@@ -1230,21 +1218,15 @@ local setBarTicks = function(Castbar, ticknum)
 	end
 end
 
-T.PostCastStart = function(Castbar, unit, name, castid)
+T.PostCastStart = function(Castbar, unit, name)
 	Castbar.channeling = false
 	if unit == "vehicle" then unit = "player" end
 
 	if unit == "player" and C.unitframe.castbar_latency == true and Castbar.Latency then
-		local _, _, _, lag = GetNetStats()
-		local latency = GetTime() - (Castbar.castSent or 0)
-		lag = lag / 1e3 > Castbar.max and Castbar.max or lag / 1e3
-		latency = latency > Castbar.max and lag or latency
-		Castbar.Latency:SetText(("%dms"):format(latency * 1e3))
-		Castbar.SafeZone:SetWidth(Castbar:GetWidth() * latency / Castbar.max)
-		Castbar.SafeZone:ClearAllPoints()
-		Castbar.SafeZone:SetPoint("TOPRIGHT")
-		Castbar.SafeZone:SetPoint("BOTTOMRIGHT")
-		Castbar.castSent = nil
+		local _, _, _, ms = GetNetStats()
+		Castbar.Latency:SetText(("%dms"):format(ms))
+		Castbar.SafeZone:SetDrawLayer("BORDER")
+		Castbar.SafeZone:SetVertexColor(0.85, 0.27, 0.27)
 	end
 
 	if unit == "player" and C.unitframe.castbar_ticks == true then
@@ -1268,7 +1250,7 @@ T.PostCastStart = function(Castbar, unit, name, castid)
 		r, g, b = color[1], color[2], color[3]
 	end
 
-	if Castbar.interrupt and UnitCanAttack("player", unit) then
+	if Castbar.notInterruptible and UnitCanAttack("player", unit) then
 		Castbar:SetStatusBarColor(0.8, 0, 0)
 		Castbar.bg:SetVertexColor(0.8, 0, 0, 0.2)
 		Castbar.Overlay:SetBackdropBorderColor(0.8, 0, 0)
@@ -1302,23 +1284,35 @@ T.PostCastStart = function(Castbar, unit, name, castid)
 			Castbar.Button:SetBackdropBorderColor(unpack(C.media.border_color))
 		end
 	end
+
+	if Castbar.Time and Castbar.Text then
+		local timeWidth = Castbar.Time:GetStringWidth()
+		local textWidth = Castbar:GetWidth() - timeWidth - 5
+
+		if timeWidth == 0 then
+			C_Timer.After(0.05, function()
+				textWidth = Castbar:GetWidth() - Castbar.Time:GetStringWidth() - 5
+				if textWidth > 0 then
+					Castbar.Text:SetWidth(textWidth)
+				end
+			end)
+		else
+			Castbar.Text:SetWidth(textWidth)
+		end
+	end
 end
+
+local channelingTicks = T.CastBarTicks
 
 T.PostChannelStart = function(Castbar, unit, name)
 	Castbar.channeling = true
 	if unit == "vehicle" then unit = "player" end
 
 	if unit == "player" and C.unitframe.castbar_latency == true and Castbar.Latency then
-		local _, _, _, lag = GetNetStats()
-		local latency = GetTime() - (Castbar.castSent or 0)
-		lag = lag / 1e3 > Castbar.max and Castbar.max or lag / 1e3
-		latency = latency > Castbar.max and lag or latency
-		Castbar.Latency:SetText(("%dms"):format(latency * 1e3))
-		Castbar.SafeZone:SetWidth(Castbar:GetWidth() * latency / Castbar.max)
-		Castbar.SafeZone:ClearAllPoints()
-		Castbar.SafeZone:SetPoint("TOPLEFT")
-		Castbar.SafeZone:SetPoint("BOTTOMLEFT")
-		Castbar.castSent = nil
+		local _, _, _, ms = GetNetStats()
+		Castbar.Latency:SetText(("%dms"):format(ms))
+		Castbar.SafeZone:SetDrawLayer("ARTWORK")
+		Castbar.SafeZone:SetVertexColor(0.85, 0.27, 0.27, 0.75)
 	end
 
 	if unit == "player" and C.unitframe.castbar_ticks == true then
@@ -1344,7 +1338,7 @@ T.PostChannelStart = function(Castbar, unit, name)
 		r, g, b = color[1], color[2], color[3]
 	end
 
-	if Castbar.interrupt and UnitCanAttack("player", unit) then
+	if Castbar.notInterruptible and UnitCanAttack("player", unit) then
 		Castbar:SetStatusBarColor(0.8, 0, 0)
 		Castbar.bg:SetVertexColor(0.8, 0, 0, 0.2)
 		Castbar.Overlay:SetBackdropBorderColor(0.8, 0, 0)
@@ -1376,6 +1370,22 @@ T.PostChannelStart = function(Castbar, unit, name)
 		Castbar.Overlay:SetBackdropBorderColor(unpack(C.media.border_color))
 		if C.unitframe.castbar_icon == true and (unit == "target" or unit == "focus") then
 			Castbar.Button:SetBackdropBorderColor(unpack(C.media.border_color))
+		end
+	end
+
+	if Castbar.Time and Castbar.Text then
+		local timeWidth = Castbar.Time:GetStringWidth()
+		local textWidth = Castbar:GetWidth() - timeWidth - 5
+
+		if timeWidth == 0 then
+			C_Timer.After(0.05, function()
+				textWidth = Castbar:GetWidth() - Castbar.Time:GetStringWidth() - 5
+				if textWidth > 0 then
+					Castbar.Text:SetWidth(textWidth)
+				end
+			end)
+		else
+			Castbar.Text:SetWidth(textWidth)
 		end
 	end
 end
@@ -1492,7 +1502,7 @@ T.PostCreateAura = function(element, button)
 end
 
 T.PostUpdateIcon = function(icons, unit, icon, index, offset, filter, isDebuff, duration, timeLeft)
-	local _, _, _, _, dtype, duration, expirationTime, _, isStealable = UnitAura(unit, index, icon.filter)
+	local _, _, _, dtype, duration, expirationTime, _, isStealable = UnitAura(unit, index, icon.filter)
 
 	local playerUnits = {
 		player = true,

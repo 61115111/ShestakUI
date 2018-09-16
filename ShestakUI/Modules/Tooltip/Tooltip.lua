@@ -7,6 +7,8 @@ if C.tooltip.enable ~= true then return end
 local StoryTooltip = QuestScrollFrame.StoryTooltip
 StoryTooltip:SetFrameLevel(4)
 
+local WarCampaignTooltip = QuestScrollFrame.WarCampaignTooltip
+
 local tooltips = {
 	GameTooltip,
 	ItemRefTooltip,
@@ -22,7 +24,9 @@ local tooltips = {
 	QuestHelperTooltip,
 	QuestGuru_QuestWatchTooltip,
 	StoryTooltip,
-	ReputationParagonTooltip
+	ReputationParagonTooltip,
+	WarCampaignTooltip,
+	EmbeddedItemTooltip
 }
 
 local backdrop = {
@@ -33,6 +37,7 @@ local backdrop = {
 for _, tt in pairs(tooltips) do
 	if not IsAddOnLoaded("Aurora") then
 		tt:SetBackdrop(nil)
+		tt.SetBackdrop = T.dummy
 		if tt.BackdropFrame then
 			tt.BackdropFrame:SetBackdrop(nil)
 		end
@@ -65,7 +70,7 @@ frame:SetScript("OnEvent", function(self, event, addon)
 					ExtraTip:CreateBackdrop("Transparent")
 					ExtraTip.backdrop:SetPoint("TOPLEFT", 0, -3)
 					ExtraTip.backdrop:SetPoint("BOTTOMRIGHT", 0, 2)
-					ExtraTip:HookScript("OnShow", function(tt)
+					ExtraTip:HookScript("OnShow", function()
 						ExtraTip.backdrop:SetFrameLevel(0)
 					end)
 					ExtraTip.IsDone = true
@@ -244,7 +249,6 @@ local OnTooltipSetUnit = function(self)
 	local creatureType = UnitCreatureType(unit)
 	local _, faction = UnitFactionGroup(unit)
 	local _, playerFaction = UnitFactionGroup("player")
-	local relationship = UnitRealmRelationship(unit)
 	local UnitPVPName = UnitPVPName
 
 	if level and level == -1 then
@@ -520,34 +524,54 @@ GameTooltip:HookScript("OnTooltipSetItem", FixFont)
 ItemRefTooltip:HookScript("OnTooltipSetItem", FixFont)
 
 ----------------------------------------------------------------------------------------
---	Skin tooltip status bar
+--	Skin WorldMapTooltip and ReputationParagonTooltip
 ----------------------------------------------------------------------------------------
-local function SkinWorldMapTooltip()
-	local bar = WorldMapTaskTooltipStatusBar.Bar
-	local label = bar.Label
-	if bar then
-		bar:StripTextures()
-		bar:SetStatusBarTexture(C.media.texture)
-		bar:SetTemplate("Transparent")
-		label:ClearAllPoints()
-		label:SetPoint("CENTER", bar, 0, 0)
-		label:SetDrawLayer("OVERLAY")
-		label:SetFont(C.media.pixel_font, C.media.pixel_font_size, C.media.pixel_font_style)
-	end
-end
-hooksecurefunc("TaskPOI_OnEnter", SkinWorldMapTooltip)
+--BETA do
+	-- local bar = WorldMapTaskTooltipStatusBar.Bar
+	-- local label = bar.Label
+	-- if bar then
+		-- bar:StripTextures()
+		-- bar:SetStatusBarTexture(C.media.texture)
+		-- bar:SetTemplate("Transparent")
+		-- label:ClearAllPoints()
+		-- label:SetPoint("CENTER", bar, 0, 0)
+		-- label:SetDrawLayer("OVERLAY")
+		-- label:SetFont(C.media.pixel_font, C.media.pixel_font_size, C.media.pixel_font_style)
+	-- end
+-- end
 
-local function SkinReputationTooltip()
-	local bar = ReputationParagonTooltipStatusBar.Bar
-	local label = bar.Label
-	if bar then
-		bar:StripTextures()
-		bar:SetStatusBarTexture(C.media.texture)
-		bar:SetTemplate("Transparent")
-		label:ClearAllPoints()
-		label:SetPoint("CENTER", bar, 0, 0)
-		label:SetDrawLayer("OVERLAY")
-		label:SetFont(C.media.pixel_font, C.media.pixel_font_size, C.media.pixel_font_style)
-	end
-end
-hooksecurefunc("ReputationParagonFrame_SetupParagonTooltip", SkinReputationTooltip)
+WorldMapTooltip.ItemTooltip.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+hooksecurefunc(WorldMapTooltip.ItemTooltip.IconBorder, "SetVertexColor", function(self, r, g, b)
+	self:GetParent().backdrop:SetBackdropBorderColor(r, g, b)
+	self:SetTexture("")
+end)
+
+WorldMapTooltip.ItemTooltip:CreateBackdrop("Default")
+WorldMapTooltip.ItemTooltip.backdrop:SetPoint("TOPLEFT", WorldMapTooltip.ItemTooltip.Icon, "TOPLEFT", -2, 2)
+WorldMapTooltip.ItemTooltip.backdrop:SetPoint("BOTTOMRIGHT", WorldMapTooltip.ItemTooltip.Icon, "BOTTOMRIGHT", 2, -2)
+WorldMapTooltip.ItemTooltip.Count:ClearAllPoints()
+WorldMapTooltip.ItemTooltip.Count:SetPoint("BOTTOMRIGHT", WorldMapTooltip.ItemTooltip.Icon, "BOTTOMRIGHT", 1, 0)
+
+--BETA do
+	-- local bar = ReputationParagonTooltipStatusBar.Bar
+	-- local label = bar.Label
+	-- if bar then
+		-- bar:StripTextures()
+		-- bar:SetStatusBarTexture(C.media.texture)
+		-- bar:SetTemplate("Transparent")
+		-- label:ClearAllPoints()
+		-- label:SetPoint("CENTER", bar, 0, 0)
+		-- label:SetDrawLayer("OVERLAY")
+		-- label:SetFont(C.media.pixel_font, C.media.pixel_font_size, C.media.pixel_font_style)
+	-- end
+-- end
+
+-- ReputationParagonTooltip.ItemTooltip.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+-- hooksecurefunc(ReputationParagonTooltip.ItemTooltip.IconBorder, "SetVertexColor", function(self, r, g, b)
+	-- self:GetParent().backdrop:SetBackdropBorderColor(r, g, b)
+	-- self:SetTexture("")
+-- end)
+
+-- ReputationParagonTooltip.ItemTooltip:CreateBackdrop("Default")
+-- ReputationParagonTooltip.ItemTooltip.backdrop:SetPoint("TOPLEFT", ReputationParagonTooltip.ItemTooltip.Icon, "TOPLEFT", -2, 2)
+-- ReputationParagonTooltip.ItemTooltip.backdrop:SetPoint("BOTTOMRIGHT", ReputationParagonTooltip.ItemTooltip.Icon, "BOTTOMRIGHT", 2, -2)

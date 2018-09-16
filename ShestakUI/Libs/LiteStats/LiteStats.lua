@@ -70,30 +70,33 @@ ls:SetScript("OnEvent", function(_, event, addon)
 		if conf.AutoRepair == nil then conf.AutoRepair = true end
 		if conf.AutoGuildRepair == nil then conf.AutoGuildRepair = true end
 	end
-	if event == "ZONE_CHANGED_NEW_AREA" and not WorldMapFrame:IsShown() then
-		SetMapToCurrentZone()
-	end
+	-- if event == "ZONE_CHANGED_NEW_AREA" and not WorldMapFrame:IsShown() then
+		-- SetMapToCurrentZone()
+	-- end
 end)
 
 -- Config missing?
 if not modules then return end
 
 if modules and ((coords and coords.enabled) or (location and location.enabled)) then
-	ls:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+	--BETA ls:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 	ls:SetScript("OnUpdate", function(self, elapsed)
 		self.elapsed = (self.elapsed or 0) + elapsed
 		if self.elapsed >= 0.2 then
-			coordX, coordY = GetPlayerMapPosition(P)
+			local unitMap = C_Map.GetBestMapForUnit("player")
 
-			if not GetPlayerMapPosition(P) then
-				coordX = 0
-				coordY = 0
+			if unitMap then
+				local GetPlayerMapPosition = C_Map.GetPlayerMapPosition(C_Map.GetBestMapForUnit("player"), "player")
+
+				if GetPlayerMapPosition then
+					coordX, coordY = C_Map.GetPlayerMapPosition(C_Map.GetBestMapForUnit("player"), "player"):GetXY()
+				end
 			end
 
 			self.elapsed = 0
 		end
 	end)
-	WorldMapDetailFrame:HookScript("OnHide", SetMapToCurrentZone)
+	-- WorldMapFrame:HookScript("OnHide", SetMapToCurrentZone)
 
 	function Coords() return format(coords and coords.fmt or "%d, %d", coordX * 100, coordY * 100) end
 end
@@ -188,15 +191,6 @@ local function AltUpdate(self)
 	if not self.hovered then return end
 	if IsAltKeyDown() and not self.altdown then self.altdown = true self:GetScript("OnEnter")(self)
 	elseif not IsAltKeyDown() and self.altdown then self.altdown = false self:GetScript("OnEnter")(self) end
-end
-
-local function GetTableIndex(table, fieldIndex, value)
-	for k, v in ipairs(table) do
-		if (v[fieldIndex] == value) then
-			return k
-		end
-	end
-	return -1
 end
 
 local menuFrame = CreateFrame("Frame", "ContactDropDownMenu", UIParent, "UIDropDownMenuTemplate")
@@ -369,7 +363,7 @@ if memory.enabled then
 				if AddonList:IsShown() then
 					AddonList_OnCancel()
 				else
-					PlaySound("igMainMenuOption")
+					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
 					ShowUIPanel(AddonList)
 				end
 			end
@@ -464,14 +458,15 @@ if durability.enabled then
 			elseif button == "MiddleButton" then
 				conf.AutoGuildRepair = not conf.AutoGuildRepair
 				self:GetScript("OnEnter")(self)
-			elseif GetNumEquipmentSets() > 0 and button == "LeftButton" and (IsAltKeyDown() or IsShiftKeyDown()) then
+			elseif C_EquipmentSet.GetNumEquipmentSets() > 0 and button == "LeftButton" and (IsAltKeyDown() or IsShiftKeyDown()) then
 				local menulist = {{isTitle = true, notCheckable = 1, text = format(gsub(EQUIPMENT_SETS, ":", ""), "")}}
-				if GetNumEquipmentSets() == 0 then
+				if C_EquipmentSet.GetNumEquipmentSets() == 0 then
 					tinsert(menulist, {text = NONE, notCheckable = 1, disabled = true})
 				else
-					for i = 1, GetNumEquipmentSets() do
-						local name, icon = GetEquipmentSetInfo(i)
-						tinsert(menulist, {text = format("|T%s:"..t_icon..":"..t_icon..":0:0:64:64:5:59:5:59:%d|t %s", icon, t_icon, name), notCheckable = 1, func = function() if InCombatLockdown() then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end UseEquipmentSet(name) end})
+					for i = 1, C_EquipmentSet.GetNumEquipmentSets() do
+						local name, icon, setID = C_EquipmentSet.GetEquipmentSetInfo(i-1)
+						if not icon then icon = 134400 end
+						tinsert(menulist, {text = format("|T%s:"..t_icon..":"..t_icon..":0:0:64:64:5:59:5:59:%d|t %s", icon, t_icon, name), notCheckable = 1, func = function() if InCombatLockdown() then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end EquipmentManager_EquipSet(setID) end})
 					end
 				end
 				EasyMenu(menulist, LSMenus, "cursor", 0, 0, "MENU")
@@ -639,7 +634,7 @@ if gold.enabled then
 
 			if C.stats.currency_raid and T.level >= 110 then
 				IsSubTitle = 4
-				Currency(1273, false, true)	-- Seal of Broken Fate
+				Currency(1580, false, true)	-- Seal of Wartorn Fate
 			end
 
 			if C.stats.currency_pvp then
@@ -650,11 +645,9 @@ if gold.enabled then
 
 			if C.stats.currency_misc then
 				IsSubTitle = 6
+				Currency(1560)					-- War Resources
+				Currency(1710)					-- Seafarer's Dubloon
 				Currency(515)					-- Darkmoon Prize Ticket
-				Currency(1155, false, true)		-- Ancient Mana
-				Currency(1220)					-- Order Resources
-				Currency(1226)					-- Nethershard
-				Currency(1342, false, true)		-- Legionfall War Supplies
 			end
 
 			GameTooltip:AddLine(" ")
@@ -727,6 +720,20 @@ end
 --	Clock
 ----------------------------------------------------------------------------------------
 if clock.enabled then
+	local CALENDAR_MONTH_NAMES = {
+		MONTH_JANUARY,
+		MONTH_FEBRUARY,
+		MONTH_MARCH,
+		MONTH_APRIL,
+		MONTH_MAY,
+		MONTH_JUNE,
+		MONTH_JULY,
+		MONTH_AUGUST,
+		MONTH_SEPTEMBER,
+		MONTH_OCTOBER,
+		MONTH_NOVEMBER,
+		MONTH_DECEMBER,
+	}
 	Inject("Clock", {
 		text = {
 			string = function()
@@ -737,8 +744,9 @@ if clock.enabled then
 		OnEvent = function(self) if self.hovered then self:GetScript("OnEnter")(self) end end,
 		OnEnter = function(self)
 			if not self.hovered then RequestRaidInfo() self.hovered = true end
-			local weekday = select(date"%w"+1, CalendarGetWeekdayNames())
-			local month = select(date"%m", CalendarGetMonthNames())
+			local monthInfo = C_Calendar.GetMonthInfo()
+			local weekday = CALENDAR_WEEKDAY_NAMES[monthInfo.firstWeekday]
+			local month = CALENDAR_MONTH_NAMES[monthInfo.month]
 			GameTooltip:SetOwner(self, "ANCHOR_NONE")
 			GameTooltip:ClearAllPoints()
 			GameTooltip:SetPoint(clock.tip_anchor, clock.tip_frame, clock.tip_x, clock.tip_y)
@@ -963,9 +971,6 @@ if guild.enabled then
 		OnClick = function(self, b)
 			if b == "LeftButton" then
 				ToggleGuildFrame()
-				if IsInGuild() then
-					GuildFrame_TabClicked(GuildFrameTab2)
-				end
 			elseif b == "MiddleButton" and IsInGuild() then
 				local s = CURRENT_GUILD_SORTING
 				SortGuildRoster(IsShiftKeyDown() and s or (IsAltKeyDown() and (s == "rank" and "note" or "rank") or s == "class" and "name" or s == "name" and "level" or s == "level" and "zone" or "class"))
@@ -1023,8 +1028,6 @@ if guild.enabled then
 				local name, rank, level, zone, note, officernote, connected, status, class, isMobile, zone_r, zone_g, zone_b, classc, levelc, grouped
 				local total, _, online = GetNumGuildMembers()
 				local gmotd = GetGuildRosterMOTD()
-				local _, _, standingID, barMin, barMax, barValue = GetGuildFactionInfo()
-				local col = T.RGBToHex(ttsubh.r, ttsubh.g, ttsubh.b)
 
 				GameTooltip:SetOwner(self, "ANCHOR_NONE")
 				GameTooltip:ClearAllPoints()
@@ -1136,7 +1139,7 @@ if friends.enabled then
 		end)
 	end
 	Inject("Friends", {
-		OnLoad = function(self) RegEvents(self, "PLAYER_LOGIN PLAYER_ENTERING_WORLD GROUP_ROSTER_UPDATE FRIENDLIST_UPDATE BN_FRIEND_LIST_SIZE_CHANGED BN_FRIEND_ACCOUNT_ONLINE BN_FRIEND_ACCOUNT_OFFLINE BN_FRIEND_INFO_CHANGED BN_FRIEND_TOON_ONLINE BN_FRIEND_TOON_OFFLINE BN_TOON_NAME_UPDATED") end,
+		OnLoad = function(self) RegEvents(self, "PLAYER_LOGIN PLAYER_ENTERING_WORLD GROUP_ROSTER_UPDATE FRIENDLIST_UPDATE BN_FRIEND_LIST_SIZE_CHANGED BN_FRIEND_ACCOUNT_ONLINE BN_FRIEND_ACCOUNT_OFFLINE BN_FRIEND_INFO_CHANGED BN_FRIEND_ACCOUNT_ONLINE BN_FRIEND_ACCOUNT_OFFLINE BN_FRIEND_INFO_CHANGED") end,
 		OnEvent = function(self, event)
 			if event ~= "GROUP_ROSTER_UPDATE" then
 				local numBNetTotal, numBNetOnline = BNGetNumFriends()
@@ -1258,7 +1261,7 @@ if friends.enabled then
 			local name, level, class, zone, connected, status, note, classc, levelc, zone_r, zone_g, zone_b, grouped
 			for i = 0, total do if select(5, GetFriendInfo(i)) then online = online + 1 end end
 			local BNonline, BNtotal = 0, BNGetNumFriends()
-			local presenceID, presenceName, toonName, toonID, client, isOnline
+			local presenceName, toonName, toonID, client, isOnline
 			if BNtotal > 0 then
 				for i = 1, BNtotal do if select(8, BNGetFriendInfo(i)) then BNonline = BNonline + 1 end end
 			end
@@ -1536,14 +1539,20 @@ end
 ----------------------------------------------------------------------------------------
 if experience.enabled then
 	local logintime, playedtotal, playedlevel, playedmsg, gained, lastkill, lastquest = GetTime(), 0, 0, 0, 0
-	local repname, repcolor, standingname, currep, minrep, maxrep, reppercent
+	local repname, repcolor, standingname, currep, minrep, maxrep
 	local mobxp = gsub(COMBATLOG_XPGAIN_FIRSTPERSON, "%%[sd]", "(.*)")
 	local questxp = gsub(COMBATLOG_XPGAIN_FIRSTPERSON_UNNAMED, "%%[sd]", "(.*)")
-	local artifactXP, xpForNextPoint, numPointsAvailableToSpend, artifactTotalXP, artifactName, artifactPointsSpent, artifactTier = 0, 0, 0, 0
+	local AzeritXP, AzeritTotalLevelXP, AzeritLevel = 0, 0, 0
 	local function short(num, tt)
 		if short or tt then
 			num = tonumber(num)
-			if num >= 1e8 then
+			if num >= 1e11 then
+				return ("%.0f%s"):format(num / 1e9, experience.billion or "b")
+			elseif num >= 1e10 then
+				return ("%.1f%s"):format(num / 1e9, experience.billion or "b"):gsub("%.?0+([km])$", "%1")
+			elseif num >= 1e9 then
+				return ("%.2f%s"):format(num / 1e9, experience.billion or "b"):gsub("%.?0+([km])$", "%1")
+			elseif num >= 1e8 then
 				return ("%.0f%s"):format(num / 1e6, experience.million or "m")
 			elseif num >= 1e7 then
 				return ("%.1f%s"):format(num / 1e6, experience.million or "m"):gsub("%.?0+([km])$", "%1")
@@ -1588,11 +1597,11 @@ if experience.enabled then
 			or sub == "maxrep" and abs(maxrep - minrep)
 			or sub == "rep%" and (currep ~= 0 and floor(abs(currep - minrep) / abs(maxrep - minrep) * 100) or 0)
 			-- artifact tags
-			or sub == "curart" and short(artifactXP, tt)
-			or sub == "curart%" and floor(artifactXP / xpForNextPoint * 100)
-			or sub == "totalart" and short(xpForNextPoint, tt)
-			or sub == "remainingart" and short(xpForNextPoint - artifactXP, tt)
-			or sub == "remainingart%" and 100 - floor(artifactXP / xpForNextPoint * 100)
+			or sub == "curart" and short(AzeritXP, tt)
+			or sub == "curart%" and floor(AzeritXP / AzeritTotalLevelXP * 100)
+			or sub == "totalart" and short(AzeritTotalLevelXP, tt)
+			or sub == "remainingart" and short(AzeritTotalLevelXP - AzeritXP, tt)
+			or sub == "remainingart%" and 100 - floor(AzeritXP / AzeritTotalLevelXP * 100)
 			or format("[%s]", sub)
 	end
 	Inject("Experience", {
@@ -1610,7 +1619,7 @@ if experience.enabled then
 			end
 		},
 		OnLoad = function(self)
-			RegEvents(self, "TIME_PLAYED_MSG PLAYER_LOGOUT PLAYER_LOGIN UPDATE_FACTION CHAT_MSG_COMBAT_XP_GAIN PLAYER_LEVEL_UP ARTIFACT_XP_UPDATE PLAYER_EQUIPMENT_CHANGED")
+			RegEvents(self, "TIME_PLAYED_MSG PLAYER_LOGOUT PLAYER_LOGIN UPDATE_FACTION CHAT_MSG_COMBAT_XP_GAIN PLAYER_LEVEL_UP AZERITE_ITEM_EXPERIENCE_CHANGED PLAYER_EQUIPMENT_CHANGED")
 			-- Filter first time played message
 			local ofunc = ChatFrame_DisplayTimePlayed
 			function ChatFrame_DisplayTimePlayed() ChatFrame_DisplayTimePlayed = ofunc end
@@ -1658,16 +1667,17 @@ if experience.enabled then
 			if event == "PLAYER_LOGOUT" or event == "TIME_PLAYED_MSG" then
 				conf.Played = floor(playedtotal + GetTime() - playedmsg)
 			end
-			if (event == "ARTIFACT_XP_UPDATE" or event == "PLAYER_EQUIPMENT_CHANGED" or event == "PLAYER_LOGIN") and conf.ExpMode == "art" then
+			if (event == "AZERITE_ITEM_EXPERIENCE_CHANGED" or event == "PLAYER_EQUIPMENT_CHANGED" or event == "PLAYER_LOGIN") and conf.ExpMode == "art" then
 				if event == "PLAYER_EQUIPMENT_CHANGED" then
 					local slot = ...
 					if slot ~= INVSLOT_MAINHAND then
 						return
 					end
 				end
-				if HasArtifactEquipped() then
-					_, _, artifactName, _, artifactTotalXP, artifactPointsSpent, _, _, _, _, _, _, artifactTier = C_ArtifactUI.GetEquippedArtifactInfo()
-					numPointsAvailableToSpend, artifactXP, xpForNextPoint = MainMenuBar_GetNumArtifactTraitsPurchasableFromXP(artifactPointsSpent, artifactTotalXP, artifactTier)
+				local azeriteItemLocation = C_AzeriteItem and C_AzeriteItem.FindActiveAzeriteItem()
+				if azeriteItemLocation then
+					AzeritXP, AzeritTotalLevelXP = C_AzeriteItem.GetAzeriteItemXPInfo(azeriteItemLocation)
+					AzeritLevel = C_AzeriteItem.GetPowerLevel(azeriteItemLocation)
 					self.text:SetText(gsub(experience.artifact_fmt, "%[([%w%%]-)%]", tags))
 				else
 					if event == "PLAYER_EQUIPMENT_CHANGED" then
@@ -1734,14 +1744,15 @@ if experience.enabled then
 				GameTooltip:AddDoubleLine(format("%s%s", tags"repcolor", tags"standing"), war and format("|cffff5555%s", AT_WAR))
 				GameTooltip:AddDoubleLine(format("%s%% | %s/%s", tags"rep%", tags"currep", tags"maxrep"), -tags"repleft", ttsubh.r, ttsubh.g, ttsubh.b, 1, 0.33, 0.33)
 			elseif conf.ExpMode == "art" then
-				_, _, artifactName, _, artifactTotalXP, artifactPointsSpent, _, _, _, _, _, _, artifactTier = C_ArtifactUI.GetEquippedArtifactInfo()
-				numPointsAvailableToSpend, artifactXP, xpForNextPoint = MainMenuBar_GetNumArtifactTraitsPurchasableFromXP(artifactPointsSpent, artifactTotalXP, artifactTier)
-				GameTooltip:AddLine(ARTIFACT_POWER..": "..artifactName, tthead.r, tthead.g, tthead.b)
-				GameTooltip:AddLine(" ")
-				GameTooltip:AddDoubleLine(L_STATS_CURRENT_XP, format("%s/%s (%s%%)", tags"curart", tags"totalart", tags"curart%"), ttsubh.r, ttsubh.g, ttsubh.b, 1, 1, 1)
-				GameTooltip:AddDoubleLine(L_STATS_REMAINING_XP, format("%s (%s%%)", tags"remainingart", tags"remainingart%"), ttsubh.r, ttsubh.g, ttsubh.b, 1, 1, 1)
-				if numPointsAvailableToSpend and numPointsAvailableToSpend > 0 then
-					GameTooltip:AddLine(ARTIFACT_POWER_TOOLTIP_BODY:format(numPointsAvailableToSpend), ttsubh.r, ttsubh.g, ttsubh.b, 1)
+				local azeriteItemLocation = C_AzeriteItem and C_AzeriteItem.FindActiveAzeriteItem()
+				if azeriteItemLocation then
+					AzeritXP, AzeritTotalLevelXP = C_AzeriteItem.GetAzeriteItemXPInfo(azeriteItemLocation)
+					AzeritLevel = C_AzeriteItem.GetPowerLevel(azeriteItemLocation)
+					local azeriteName = Item:CreateFromItemLocation(azeriteItemLocation):GetItemName()
+					GameTooltip:AddDoubleLine(azeriteName, format(LEVEL_GAINED, AzeritLevel), tthead.r, tthead.g, tthead.b, tthead.r, tthead.g, tthead.b)
+					GameTooltip:AddLine(" ")
+					GameTooltip:AddDoubleLine(L_STATS_CURRENT_XP, format("%s/%s (%s%%)", tags"curart", tags"totalart", tags"curart%"), ttsubh.r, ttsubh.g, ttsubh.b, 1, 1, 1)
+					GameTooltip:AddDoubleLine(L_STATS_REMAINING_XP, format("%s (%s%%)", tags"remainingart", tags"remainingart%"), ttsubh.r, ttsubh.g, ttsubh.b, 1, 1, 1)
 				end
 			end
 			GameTooltip:Show()
@@ -1749,7 +1760,7 @@ if experience.enabled then
 		OnClick = function(self, button)
 			if button == "RightButton" then
 				conf.ExpMode = conf.ExpMode == "xp" and "played"
-					or (conf.ExpMode == "played" and HasArtifactEquipped()) and "art"
+					or (conf.ExpMode == "played" and C_AzeriteItem and C_AzeriteItem.FindActiveAzeriteItem()) and "art"
 					or conf.ExpMode == "played" and "rep"
 					or conf.ExpMode == "art" and "rep"
 					or (conf.ExpMode == "rep" and UnitLevel(P) ~= MAX_PLAYER_LEVEL) and "xp"
@@ -1757,19 +1768,13 @@ if experience.enabled then
 				if conf.ExpMode == "rep" then
 					self:GetScript("OnEvent")(self,"UPDATE_FACTION")
 				elseif conf.ExpMode == "art" then
-					self:GetScript("OnEvent")(self,"ARTIFACT_XP_UPDATE")
+					self:GetScript("OnEvent")(self,"AZERITE_ITEM_EXPERIENCE_CHANGED")
 				else
 					self:GetScript("OnUpdate")(self, 5)
 				end
 				self:GetScript("OnEnter")(self)
 			elseif button == "LeftButton" and conf.ExpMode == "rep" then
 				ToggleCharacter("ReputationFrame")
-			elseif button == "LeftButton" and conf.ExpMode == "art" then
-				if not ArtifactFrame or not ArtifactFrame:IsShown() then
-					ShowUIPanel(SocketInventoryItem(16))
-				elseif ArtifactFrame and ArtifactFrame:IsShown() then
-					HideUIPanel(ArtifactFrame)
-				end
 			end
 		end
 	})

@@ -38,9 +38,9 @@ Minimap:SetArchBlobRingScalar(0)
 Minimap:SetQuestBlobRingScalar(0)
 
 -- Hide Voice Chat Frame
-MiniMapVoiceChatFrame:Kill()
-VoiceChatTalkers:Kill()
-ChannelFrameAutoJoin:Kill()
+--BETA MiniMapVoiceChatFrame:Kill()
+-- VoiceChatTalkers:Kill()
+-- ChannelFrameAutoJoin:Kill()
 
 -- Hide North texture at top
 MinimapNorthTag:SetTexture(nil)
@@ -203,12 +203,12 @@ local micromenu = {
 	end},
 	{text = guildText, notCheckable = 1, func = function()
 		ToggleGuildFrame()
-		if IsInGuild() then
-			GuildFrame_TabClicked(GuildFrameTab2)
-		end
 	end},
 	{text = SOCIAL_BUTTON, notCheckable = 1, func = function()
 		ToggleFriendsFrame()
+	end},
+	{text = CHAT_CHANNELS, notCheckable = 1, func = function()
+		ToggleChannelFrame()
 	end},
 	{text = PLAYER_V_PLAYER, notCheckable = 1, func = function()
 		if T.level >= SHOW_PVP_LEVEL then
@@ -256,7 +256,7 @@ local micromenu = {
 		ToggleCalendar()
 	end},
 	{text = BATTLEFIELD_MINIMAP, notCheckable = 1, func = function()
-		ToggleBattlefieldMinimap()
+		ToggleBattlefieldMap()
 	end},
 	{text = LOOT_ROLLS, notCheckable = 1, func = function()
 		ToggleFrame(LootHistoryFrame)

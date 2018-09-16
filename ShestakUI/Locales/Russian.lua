@@ -97,6 +97,7 @@ L_MINIMAP_CALENDAR = "Календарь"
 L_MINIMAP_HEAL_LAYOUT = "Левый клик - Лекарь"
 L_MINIMAP_DPS_LAYOUT = "Правый клик - Боец"
 L_MINIMAP_BLIZZ_LAYOUT = "Средний клик - Blizzard"
+L_MINIMAP_ARTIFACT = "ПКМ - использовать"
 
 -- Chat
 L_CHAT_WHISPER = "От"
@@ -166,21 +167,6 @@ L_BIND_CLEARED = "Все назначения были отменены для �
 L_BIND_BINDING = "Назначение"
 L_BIND_KEY = "Клавиша"
 L_BIND_NO_SET = "Не назначено"
-
--- BG stats
-L_DATATEXT_BASESASSAULTED = "Штурмы баз:"
-L_DATATEXT_BASESDEFENDED = "Оборона баз:"
-L_DATATEXT_TOWERSASSAULTED = "Штурмы башен:"
-L_DATATEXT_TOWERSDEFENDED = "Оборона башен:"
-L_DATATEXT_FLAGSCAPTURED = "Захваты флага:"
-L_DATATEXT_FLAGSRETURNED = "Возвраты флага:"
-L_DATATEXT_GRAVEYARDSASSAULTED = "Штурмы кладбищ:"
-L_DATATEXT_GRAVEYARDSDEFENDED = "Оборона кладбищ:"
-L_DATATEXT_DEMOLISHERSDESTROYED = "Разрушителей уничтожено:"
-L_DATATEXT_GATESDESTROYED = "Врат разрушено:"
-L_DATATEXT_ORB_POSSESSIONS = "Захваты сферы:"
-L_DATATEXT_VICTORY_POINTS = "Очки победы:"
-L_DATATEXT_CARTS_CONTROLLED = "Захваты вагонеток:"
 
 -- Info text
 L_INFO_ERRORS = "Ошибок не обнаружено."

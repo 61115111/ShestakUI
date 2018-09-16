@@ -6,6 +6,7 @@
 SlashCmdList.RELOADUI = function() ReloadUI() end
 SLASH_RELOADUI1 = "/rl"
 SLASH_RELOADUI2 = "/кд"
+SLASH_RELOADUI3 = "//"
 
 SlashCmdList.RCSLASH = function() DoReadyCheck() end
 SLASH_RCSLASH1 = "/rc"
@@ -236,9 +237,9 @@ SlashCmdList["FRAMELIST"] = function(msg)
 	local isPreviouslyShown = FrameStackTooltip:IsShown()
 	if not isPreviouslyShown then
 		if msg == tostring(true) then
-			FrameStackTooltip_Toggle(true)
+			FrameStackTooltip_Toggle(true, true, true)
 		else
-			FrameStackTooltip_Toggle()
+			FrameStackTooltip_Toggle(false, true, true)
 		end
 	end
 
@@ -284,7 +285,7 @@ SLASH_CLEAR_CHAT2 = "/сдуфк"
 --	Test Blizzard Alerts
 ----------------------------------------------------------------------------------------
 SlashCmdList.TEST_ACHIEVEMENT = function()
-	PlaySound("LFG_Rewards")
+	PlaySound(SOUNDKIT.LFG_REWARDS)
 	if not AchievementFrame then
 		AchievementFrame_LoadUI()
 	end
@@ -292,10 +293,12 @@ SlashCmdList.TEST_ACHIEVEMENT = function()
 	CriteriaAlertSystem:AddAlert(9023, "Doing great!")
 	GuildChallengeAlertSystem:AddAlert(3, 2, 5)
 	InvasionAlertSystem:AddAlert(678, "Legion", true, 1, 1)
-	-- WorldQuestCompleteAlertSystem:AddAlert(112)
-	-- GarrisonFollowerAlertSystem:AddAlert(204, "Ben Stone", 90, 3, false)
+	-- WorldQuestCompleteAlertSystem:AddAlert(42114)
+	local follower = _G.C_Garrison.GetFollowers(LE_FOLLOWER_TYPE_GARRISON_7_0)[1]
+	GarrisonFollowerAlertSystem:AddAlert(follower.followerID, follower.name, follower.level, follower.quality, isUpgraded, follower)
 	GarrisonShipFollowerAlertSystem:AddAlert(592, "Ship", "Transport", "GarrBuilding_Barracks_1_H", 3, 2, 1)
 	GarrisonBuildingAlertSystem:AddAlert("Barracks")
+	GarrisonTalentAlertSystem:AddAlert(3, _G.C_Garrison.GetTalent(370))
 	LegendaryItemAlertSystem:AddAlert("\124cffa335ee\124Hitem:18832:0:0:0:0:0:0:0:0:0:0\124h[Brutality Blade]\124h\124r")
 	LootAlertSystem:AddAlert("\124cffa335ee\124Hitem:18832::::::::::\124h[Brutality Blade]\124h\124r", 1, 1, 100, 2, false, false, 0, false, false)
 	LootUpgradeAlertSystem:AddAlert("\124cffa335ee\124Hitem:18832::::::::::\124h[Brutality Blade]\124h\124r", 1, 1, 1, nil, nil, false)

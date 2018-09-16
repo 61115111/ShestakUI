@@ -7,6 +7,7 @@
 	<Script file="Archeology.lua"/>
 	<Script file="Artifact.lua"/>
 	<Script file="Auction.lua"/>
+	<Script file="Azerite.lua"/>
 	<Script file="BarberShop.lua"/>
 	<Script file="Binding.lua"/>
 	<Script file="BlackMarket.lua"/>
@@ -16,6 +17,7 @@
 	<Script file="Character.lua"/>
 	<Script file="ChatConfig.lua"/>
 	<Script file="Collections.lua"/>
+	<Script file="Communities.lua"/>
 	<Script file="Container.lua"/>
 	<Script file="Contribution.lua"/>
 	<Script file="DebugTools.lua"/>
@@ -59,6 +61,7 @@
 	<Script file="QuestLog.lua"/>
 	<Script file="Raid.lua"/>
 	<Script file="RaidInfo.lua"/>
+	<Script file="Scrapping.lua"/>
 	<Script file="SpellBook.lua"/>
 	<Script file="Tabard.lua"/>
 	<Script file="Talent.lua"/>
@@ -70,6 +73,7 @@
 	<Script file="Trainer.lua"/>
 	<Script file="Tutorial.lua"/>
 	<Script file="VoidStorage.lua"/>
+	<Script file="Warboard.lua"/>
 	<Script file="WorldMap.lua"/>
 	<Script file="WorldState.lua"/>
 </Ui>

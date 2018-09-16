@@ -99,7 +99,6 @@ L_GUI_SKINS_NUG_RUNNING = "NugRunning Design aktivieren"
 L_GUI_SKINS_OVALE = "OvaleSpellPriority Design aktivieren"
 L_GUI_SKINS_CLIQUE = "Clique Design aktivieren"
 L_GUI_SKINS_ACE3 = "Ace3-Optionen skin"
-L_GUI_SKINS_PP = "PallyPower Design aktivieren"
 L_GUI_SKINS_CAPPING = "Capping Design aktivieren"
 L_GUI_SKINS_COOL_LINE = "CoolLine Design aktivieren"
 L_GUI_SKINS_ATLASLOOT = "AtlasLoot Design aktivieren"
@@ -218,7 +217,6 @@ L_GUI_TOOLTIP_WHO_TARGETTING = "Zeige an, wer die Eihneit, die in deiner Gruppe/
 L_GUI_TOOLTIP_ITEM_COUNT = "Gegenstandsanzahl"
 L_GUI_TOOLTIP_UNIT_ROLE = "Klassenrolle (Tank/Schaden/Heiler)"
 L_GUI_TOOLTIP_INSTANCE_LOCK = "Deine abgeschlossenen Instanzen im Tooltip"
-L_GUI_TOOLTIP_ITEM_TRANSMOGRIFY = "Zeige an wenn Gegenstände nicht Transmorgifiziert werden können"
 
 -- Chat options
 L_GUI_CHAT_ENABLE = "Chat aktivieren"
@@ -289,11 +287,13 @@ L_GUI_NAMEPLATE_NEAR_COLOR = "Verlust oder Zuwachs der Bedrohung farbig kennzeic
 L_GUI_NAMEPLATE_BAD_COLOR = "Negative Bedrohungsfarbe. Variiert abhängig ob Tank oder dps/heal"
 L_GUI_NAMEPLATE_OFFTANK_COLOR = "Offtank threat color" -- Need review
 L_GUI_NAMEPLATE_SHOW_DEBUFFS = "Zeige Schwächungszauber (Abgekürzte Namen müssen deaktiviert sein)"
+L_GUI_NAMEPLATE_SHOW_BUFFS = "Show buffs above player nameplate (from the list)" -- Need review
 L_GUI_NAMEPLATE_DEBUFFS_SIZE = "Größe der Debuffs"
 L_GUI_NAMEPLATE_HEALER_ICON = "Zeige Heilersymbol auf allen gegnerischen Heiler-Nameplates im BG"
 L_GUI_NAMEPLATE_TOTEM_ICONS = "Show icon above enemy totems nameplate" -- Need review
 
 -- ActionBar options
+L_GUI_ACTIONBAR = "Action Bars" -- Need review
 L_GUI_ACTIONBAR_ENABLE = "Aktionsleisten aktivieren"
 L_GUI_ACTIONBAR_HOTKEY = "Zeige Hotkey-Text an"
 L_GUI_ACTIONBAR_MACRO = "Zeige Makronamen auf den Buttons"
@@ -307,12 +307,12 @@ L_GUI_ACTIONBAR_HIDE_HIGHLIGHT = "hebe keine Procs hervor"
 L_GUI_ACTIONBAR_BOTTOMBARS = "Anzahl der Aktionsleisten an der unteren Seite (1, 2 oder 3)"
 L_GUI_ACTIONBAR_RIGHTBARS = "Anzahl der Aktionsleisten an der rechten Seite (0, 1, 2, oder 3)"
 L_GUI_ACTIONBAR_RIGHTBARS_MOUSEOVER = "Zeige die rechten Leisten nur bei Mouseover"
-L_GUI_ACTIONBAR_PETBAR_MOUSEOVER = "Zeige die Begleiterleiste nur bei Mouseover(nur für horizontale Begleiterleiste)"
 L_GUI_ACTIONBAR_PETBAR_HIDE = "Verstecke Begleiterleiste"
 L_GUI_ACTIONBAR_PETBAR_HORIZONTAL = "Aktiviere horizontale Begleiterleiste"
-L_GUI_ACTIONBAR_STANCEBAR_MOUSEOVER = "Zeige Haltungsleiste/Gestaltenleiste nur bei Mouseover"
+L_GUI_ACTIONBAR_PETBAR_MOUSEOVER = "Zeige die Begleiterleiste nur bei Mouseover(nur für horizontale Begleiterleiste)"
 L_GUI_ACTIONBAR_STANCEBAR_HIDE = "Gestaltenleiste verstecken"
 L_GUI_ACTIONBAR_STANCEBAR_HORIZONTAL = "Horizontale Haltungsleiste aktivieren"
+L_GUI_ACTIONBAR_STANCEBAR_MOUSEOVER = "Zeige Haltungsleiste/Gestaltenleiste nur bei Mouseover" -- Need review
 L_GUI_ACTIONBAR_MICROMENU = "Zeige Micromenü"
 L_GUI_ACTIONBAR_MICROMENU_MOUSEOVER = "Micromenü bei MouseOver"
 
@@ -376,7 +376,6 @@ L_GUI_UF_PLUGINS_GCD = "Blitz für globalen Cooldown"
 L_GUI_UF_PLUGINS_SWING = "Swingleiste"
 L_GUI_UF_PLUGINS_REPUTATION_BAR = "Rufleiste"
 L_GUI_UF_PLUGINS_EXPERIENCE_BAR = "Erfahrungsleiste"
-L_GUI_UF_PLUGINS_FRIENDSHIP_BAR = "Freundschaftsleiste"
 L_GUI_UF_PLUGINS_ARTIFACT_BAR = "Artifact Power bar" -- Need review
 L_GUI_UF_PLUGINS_SMOOTH_BAR = "Weichgezeichnete Leisten"
 L_GUI_UF_PLUGINS_ENEMY_SPEC = "Zeige gegnerische Talente"

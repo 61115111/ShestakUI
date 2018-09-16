@@ -99,7 +99,6 @@ L_GUI_SKINS_NUG_RUNNING = "NugRunning"
 L_GUI_SKINS_OVALE = "OvaleSpellPriority"
 L_GUI_SKINS_CLIQUE = "Clique"
 L_GUI_SKINS_ACE3 = "Ace3"
-L_GUI_SKINS_PP = "PallyPower"
 L_GUI_SKINS_CAPPING = "Capping"
 L_GUI_SKINS_COOL_LINE = "CoolLine"
 L_GUI_SKINS_ATLASLOOT = "AtlasLoot"
@@ -218,7 +217,6 @@ L_GUI_TOOLTIP_WHO_TARGETTING = "隊伍/團隊時,顯示關注成員(誰以目標
 L_GUI_TOOLTIP_ITEM_COUNT = "叠堆數量"
 L_GUI_TOOLTIP_UNIT_ROLE = "角色類型"
 L_GUI_TOOLTIP_INSTANCE_LOCK = "自身信息提示"
-L_GUI_TOOLTIP_ITEM_TRANSMOGRIFY = "非幻化裝備提示"
 
 -- Chat options
 L_GUI_CHAT_ENABLE = "開啟聊天框增強"
@@ -289,11 +287,13 @@ L_GUI_NAMEPLATE_NEAR_COLOR = "臨界仇恨顏色"
 L_GUI_NAMEPLATE_BAD_COLOR = "危險仇恨顏色"
 L_GUI_NAMEPLATE_OFFTANK_COLOR = "Offtank threat color" -- Need review
 L_GUI_NAMEPLATE_SHOW_DEBUFFS = "DeBuff圖示(需要關閉'名字縮寫')"
+L_GUI_NAMEPLATE_SHOW_BUFFS = "Show buffs above player nameplate (from the list)" -- Need review
 L_GUI_NAMEPLATE_DEBUFFS_SIZE = "DeBuff大小"
 L_GUI_NAMEPLATE_HEALER_ICON = "戰場中顯示治療職業圖示"
 L_GUI_NAMEPLATE_TOTEM_ICONS = "Show icon above enemy totems nameplate" -- Need review
 
 -- ActionBar options
+L_GUI_ACTIONBAR = "Action Bars" -- Need review
 L_GUI_ACTIONBAR_ENABLE = "開啟快捷列增強"
 L_GUI_ACTIONBAR_HOTKEY = "熱鍵文字"
 L_GUI_ACTIONBAR_MACRO = "巨集名字"
@@ -310,9 +310,9 @@ L_GUI_ACTIONBAR_RIGHTBARS_MOUSEOVER = "滑鼠懸停顯示右側快捷列"
 L_GUI_ACTIONBAR_PETBAR_MOUSEOVER = "滑鼠懸停顯示寵物快捷列"
 L_GUI_ACTIONBAR_PETBAR_HIDE = "隱藏寵物快捷列"
 L_GUI_ACTIONBAR_PETBAR_HORIZONTAL = "寵物快捷列橫向排列"
-L_GUI_ACTIONBAR_STANCEBAR_MOUSEOVER = "滑鼠懸停顯示變身/姿態/圖騰快捷列"
 L_GUI_ACTIONBAR_STANCEBAR_HIDE = "隱藏變身/姿態/圖騰快捷列"
 L_GUI_ACTIONBAR_STANCEBAR_HORIZONTAL = "變身/姿態快捷列橫向排列"
+L_GUI_ACTIONBAR_STANCEBAR_MOUSEOVER = "滑鼠懸停顯示變身/姿態/圖騰快捷列" -- Need review
 L_GUI_ACTIONBAR_MICROMENU = "微型菜單"
 L_GUI_ACTIONBAR_MICROMENU_MOUSEOVER = "滑鼠懸停顯示微型菜單"
 
@@ -376,7 +376,6 @@ L_GUI_UF_PLUGINS_GCD = "公共CD計時條"
 L_GUI_UF_PLUGINS_SWING = "普通攻擊計時條"
 L_GUI_UF_PLUGINS_REPUTATION_BAR = "聲望條"
 L_GUI_UF_PLUGINS_EXPERIENCE_BAR = "經驗條"
-L_GUI_UF_PLUGINS_FRIENDSHIP_BAR = "友誼條"
 L_GUI_UF_PLUGINS_ARTIFACT_BAR = "Artifact Power bar" -- Need review
 L_GUI_UF_PLUGINS_SMOOTH_BAR = "平滑條"
 L_GUI_UF_PLUGINS_ENEMY_SPEC = "敵對玩家天賦"

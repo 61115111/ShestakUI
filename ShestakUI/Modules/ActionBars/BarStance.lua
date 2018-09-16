@@ -4,7 +4,7 @@ if C.actionbar.enable ~= true then return end
 ----------------------------------------------------------------------------------------
 --	StanceBar(by Tukz)
 ----------------------------------------------------------------------------------------
-local ShiftHolder = CreateFrame("Frame", "ShiftHolder", oUF_PetBattleFrameHider)
+local ShiftHolder = CreateFrame("Frame", "ShiftHolder", T_PetBattleFrameHider)
 if C.actionbar.stancebar_horizontal == true then
 	ShiftHolder:SetPoint(unpack(C.position.stance_bar))
 	ShiftHolder:SetWidth((C.actionbar.button_size * 7) + (C.actionbar.button_space * 6))
@@ -104,6 +104,9 @@ end)
 
 -- Mouseover bar
 if C.actionbar.rightbars_mouseover == true and C.actionbar.stancebar_horizontal == false then
+	ShapeShiftBarAnchor:SetAlpha(0)
+	ShapeShiftBarAnchor:SetScript("OnEnter", function() RightBarMouseOver(1) end)
+	ShapeShiftBarAnchor:SetScript("OnLeave", function() if not HoverBind.enabled then RightBarMouseOver(0) end end)
 	for i = 1, NUM_STANCE_SLOTS do
 		local b = _G["StanceButton"..i]
 		b:SetAlpha(0)

@@ -11,7 +11,7 @@ if C.raidcooldown.enable == true then
 		[20484] = 600,	-- Rebirth
 		[61999] = 600,	-- Raise Ally
 		[20707] = 600,	-- Soulstone
-		[126393] = 600,	-- Eternal Guardian (Quilen)
+		--BETA [126393] = 600,	-- Eternal Guardian (Quilen)
 		[159956] = 600,	-- Dust of Life (Moth)
 		[159931] = 600,	-- Gift of Chi-Ji (Crane)
 		-- Heroism
@@ -66,13 +66,13 @@ if C.enemycooldown.enable == true then
 		-- Crowd Controls
 		[115078] = 15,	-- Paralysis
 		[20066] = 15,	-- Repentance
-		[108194] = 30,	-- Asphyxiate
 		[187650] = 30,	-- Freezing Trap
 		[8122] = 30,	-- Psychic Scream
 		[30283] = 30,	-- Shadowfury
 		[107570] = 30,	-- Storm Bolt
 		[51514] = 30,	-- Hex
 		[5484] = 40,	-- Howl of Terror
+		[108194] = 45,	-- Asphyxiate
 		[19386] = 45,	-- Wyvern Sting
 		[113724] = 45,	-- Ring of Frost
 		[119381] = 45,	-- Leg Sweep
@@ -80,10 +80,10 @@ if C.enemycooldown.enable == true then
 		[6789] = 45,	-- Mortal Coil
 		[853] = 60,		-- Hammer of Justice
 		-- Defense abilities
-		[48707] = 45,	-- Anti-Magic Shell
-		[31224] = 60,	-- Cloak of Shadows
-		[46924] = 60,	-- Bladestorm
-		[49039] = 120,	-- Lichborne
+		[48707] = 60,	-- Anti-Magic Shell
+		[31224] = 90,	-- Cloak of Shadows
+		[46924] = 90,	-- Bladestorm
+		--BETA [49039] = 120,	-- Lichborne
 		[213664] = 120,	-- Nimble Brew
 		[47585] = 120,	-- Dispersion
 		[1856] = 120,	-- Vanish

@@ -106,7 +106,7 @@ function CheckBuffs()
 	btn:SetAttribute("spell", nil)
 	for i, v in pairs(_G[T.class..spec]) do
 		local name = GetSpellInfo(v)
-		if name and not UnitAura("player", name) then
+		if name and not T.CheckPlayerBuff(name) then
 			if GetSpellCooldown(name) == 0 then
 				btn:SetAttribute("spell", name)
 				SetOverrideBindingClick(btn, true, "MOUSEWHEELUP", "AutoBuffButton")

@@ -97,6 +97,7 @@ L_MINIMAP_CALENDAR = "Kalender"
 L_MINIMAP_HEAL_LAYOUT = "Links-Klick - Heiler Layout"
 L_MINIMAP_DPS_LAYOUT = "Rechts-Klick - DPS Layout"
 L_MINIMAP_BLIZZ_LAYOUT = "Mittel-Klick - Blizzard Layout"
+L_MINIMAP_ARTIFACT = "Right click to use" -- Needs review
 
 -- Chat
 L_CHAT_WHISPER = "Von"
@@ -166,21 +167,6 @@ L_BIND_CLEARED = "Alle Tastaturbelegungen gelöscht für"
 L_BIND_BINDING = "Belegung"
 L_BIND_KEY = "Taste"
 L_BIND_NO_SET = "Keine Tastaturbelegung festgelegt"
-
--- BG stats
-L_DATATEXT_BASESASSAULTED = "Basen angegriffen:"
-L_DATATEXT_BASESDEFENDED = "Basen verteidigt:"
-L_DATATEXT_TOWERSASSAULTED = "Türme angegriffen:"
-L_DATATEXT_TOWERSDEFENDED = "Türme verteidigt:"
-L_DATATEXT_FLAGSCAPTURED = "Flaggen eingenommen:"
-L_DATATEXT_FLAGSRETURNED = "Flaggen zurückgebracht:"
-L_DATATEXT_GRAVEYARDSASSAULTED = "Friedhöfe angegriffen:"
-L_DATATEXT_GRAVEYARDSDEFENDED = "Friedhöfe verteidigt:"
-L_DATATEXT_DEMOLISHERSDESTROYED = "Verwüster zerstört:"
-L_DATATEXT_GATESDESTROYED = "Tore zerstört:"
-L_DATATEXT_ORB_POSSESSIONS = "Gehaltene Kugeln:"
-L_DATATEXT_VICTORY_POINTS = "Siegespunkte:"
-L_DATATEXT_CARTS_CONTROLLED = "Kontrollierte Loren:"
 
 -- Info text
 L_INFO_ERRORS = "Noch keine Fehler."

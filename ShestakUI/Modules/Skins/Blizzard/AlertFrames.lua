@@ -328,9 +328,17 @@ local function LoadSkin()
 	hooksecurefunc(GarrisonShipFollowerAlertSystem, "setUpFunction", SkinGarrisonShipFollowerAlert)
 
 	local function SkinGarrisonTalentAlert(frame)
+		-- Create Backdrop
+		if not frame.backdrop then
+			frame:CreateBackdrop("Transparent")
+			frame.backdrop:SetPoint("TOPLEFT", frame, "TOPLEFT", 22, -6)
+			frame.backdrop:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -25, 6)
+		end
+
 		frame:GetRegions():Hide()
 		frame.glow:Kill()
 		frame.shine:Kill()
+
 		-- Icon
 		frame.Icon:SetSize(50, 50)
 		frame.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
@@ -341,13 +349,6 @@ local function LoadSkin()
 		frame.Icon.b:SetPoint("TOPLEFT", frame.Icon, "TOPLEFT", -2, 2)
 		frame.Icon.b:SetPoint("BOTTOMRIGHT", frame.Icon, "BOTTOMRIGHT", 2, -2)
 		frame.Icon:SetParent(frame.Icon.b)
-
-		-- Create Backdrop
-		if not frame.backdrop then
-			frame:CreateBackdrop("Transparent")
-			frame.backdrop:SetPoint("TOPLEFT", frame, "TOPLEFT", 22, -6)
-			frame.backdrop:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -25, 6)
-		end
 	end
 	hooksecurefunc(GarrisonTalentAlertSystem, "setUpFunction", SkinGarrisonTalentAlert)
 
@@ -728,6 +729,41 @@ local function LoadSkin()
 		end
 	end
 	hooksecurefunc(NewRecipeLearnedAlertSystem, "setUpFunction", SkinNewRecipeLearnedAlert)
+
+	local function SkinNewPetMountAlert(frame)
+		frame:SetAlpha(1)
+		if not frame.hooked then
+			hooksecurefunc(frame, "SetAlpha", forceAlpha)
+			frame.hooked = true
+		end
+
+		if not frame.backdrop then
+			frame:CreateBackdrop("Transparent")
+			frame.backdrop:SetPoint("TOPLEFT", frame, "TOPLEFT", 1, -6)
+			frame.backdrop:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -5, 6)
+		end
+
+		frame.Background:Kill()
+		frame.IconBorder:Kill()
+		frame.glow:Kill()
+		frame.shine:Kill()
+
+		frame.Icon:SetMask("")
+		frame.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+		frame.Icon:SetDrawLayer("BORDER", 5)
+		frame.Icon:SetPoint("LEFT", frame.backdrop, 9, 0)
+
+		-- Icon border
+		if not frame.Icon.b then
+			frame.Icon.b = CreateFrame("Frame", nil, frame)
+			frame.Icon.b:SetTemplate("Default")
+			frame.Icon.b:SetPoint("TOPLEFT", frame.Icon, "TOPLEFT", -2, 2)
+			frame.Icon.b:SetPoint("BOTTOMRIGHT", frame.Icon, "BOTTOMRIGHT", 2, -2)
+			frame.Icon:SetParent(frame.Icon.b)
+		end
+	end
+	hooksecurefunc(NewPetAlertSystem, "setUpFunction", SkinNewPetMountAlert)
+	hooksecurefunc(NewMountAlertSystem, "setUpFunction", SkinNewPetMountAlert)
 
 	-- Bonus Roll Money
 	local frame = BonusRollMoneyWonFrame

@@ -27,6 +27,14 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
+			-- Empower Rune Weapon
+			{spellID = 47568, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Death's Advance
+			{spellID = 48265, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Remorseless Winter
+			{spellID = 196770, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Hungering Rune Weapon
+			{spellID = 207127, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Bone Shield
 			{spellID = 195181, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Vampiric Blood
@@ -38,7 +46,7 @@ C["filger_spells"] = {
 			-- Dancing Rune Weapon
 			{spellID = 81256, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Lichborne
-			{spellID = 49039, unitID = "player", caster = "player", filter = "BUFF"},
+			--BETA {spellID = 49039, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Rune Tap
 			{spellID = 194679, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Pillar of Frost
@@ -48,7 +56,7 @@ C["filger_spells"] = {
 			-- Unholy Blight
 			{spellID = 115989, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Summon Gargoyle
-			{spellID = 49206, filter = "ICD", trigger = "NONE", duration = 40},
+			{spellID = 49206, filter = "ICD", trigger = "NONE", duration = 30},
 		},
 		{
 			Name = "P_PROC_ICON",
@@ -60,6 +68,8 @@ C["filger_spells"] = {
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Buffs
+			-- Icy Talons
+			{spellID = 194879, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Crimson Scourge
 			{spellID = 81141, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Freezing Fog
@@ -74,78 +84,21 @@ C["filger_spells"] = {
 			{spellID = 63560, unitID = "pet", caster = "player", filter = "BUFF"},
 
 			-- Trinkets
-			-- Alchemy Stones
-			-- Strength
-			{spellID = 60229, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Drunken Evasiveness (Bonus Armor, Use) [Brawler's Statue]
-			{spellID = 127967, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Reflection of Torment (Attack Power, Proc) [Coren's Cold Chromium]
-			{spellID = 127928, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Victory (Strength, Proc)
-			{spellID = 190025, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Tanking
-			-- Cunning of the Deceiver (Special, Proc) [Shifting Cosmic Sliver]
-			{spellID = 242628, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Living Carapace (Damage Reduction, Use) [Animated Exoskeleton]
-			{spellID = 225033, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Vampiric Aura (Leech, Use) [Fang of Tichcondrius]
-			{spellID = 225130, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Infernal Contract (Damage Reduction, Use) [Infernal Contract]
-			{spellID = 225140, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Sands of Time (DoT, Proc) [Royal Dagger Haft]
-			{spellID = 225720, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shadowy Reflection (Damage Reduction, Proc) [Phantasmal Echo]
-			{spellID = 222479, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nightmarish Ichor (Versatility, Proc) [Goblet of Nightmarish Ichor]
-			{spellID = 222027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wild God's Fury (Health, Use) [Unbridled Fury]
-			{spellID = 221695, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Darkening Soul (Damage Reduction, Proc) [Grotesque Statuette]
-			{spellID = 222209, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Crystalline Body (Damage Reduction, Use) [Shard of Rokmora]
-			{spellID = 214366, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Stance of the Mountain (Damage Reduction, Use) [Talisman of the Cragshaper]
-			{spellID = 214423, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Warlord's Fortitude (Health and Mastery, Proc) [Parjesh's Medallion]
-			{spellID = 214622, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nerubian Chitin (Armor, Proc) [Impenetrable Nerubian Husk]
-			{spellID = 214494, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Strength]
-			-- Fiery Enchant (Crit, Proc) [Entwined Elemental Foci]
-			{spellID = 225726, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Frost Enchant (Mastery, Proc) [Entwined Elemental Foci]
-			{spellID = 225729, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Arcane Enchant (Haste, Proc) [Entwined Elemental Foci]
-			{spellID = 225730, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Ancient's Blessing (Crit, Proc) [Nature's Call]
-			{spellID = 222517, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Wisp's Blessing (Mastery, Proc) [Nature's Call]
-			{spellID = 222518, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Sister's Blessing (Haste, Proc) [Nature's Call]
-			{spellID = 222519, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Howl of Ingvar (Crit, Proc) [Memento of Angerboda]
-			{spellID = 214802, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wail of Svala (Haste, Proc) [Memento of Angerboda]
-			{spellID = 214803, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Dirge of Angerboda (Mastery, Proc) [Memento of Angerboda]
-			{spellID = 214807, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Down Draft (Haste, Proc) [Nightmare Egg Shell]
-			{spellID = 214342, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Mark of the Heavy Hide (Armor)
-			{spellID = 228399, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
+		-- {
+			-- Name = "T_DEBUFF_ICON",
+			-- Direction = "RIGHT",
+			-- Mode = "ICON",
+			-- Interval = 3,
+			-- Alpha = 1,
+			-- IconSize = C.filger.buffs_size,
+			-- Position = {"TOP", T_DEBUFF_ICON_Anchor},
+
+
+		-- },
 		{
 			Name = "T_DE/BUFF_BAR",
 			Direction = "UP",
@@ -157,14 +110,17 @@ C["filger_spells"] = {
 			BarWidth = 186,
 			Position = {"LEFT", T_DE_BUFF_BAR_Anchor},
 
+			-- Festering Wound
+			{spellID = 194310, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Virulent Plague
+			{spellID = 191587, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Blood Plague
 			{spellID = 55078, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Frost Fever
 			{spellID = 55095, unitID = "target", caster = "player", filter = "DEBUFF"},
 
 			-- Trinket Effects
-			-- Fel Burn [Empty Drinking Horn]
-			{spellID = 184256, unitID = "target", caster = "player", filter = "DEBUFF"},
+			
 		},
 		{
 			Name = "COOLDOWN",
@@ -176,6 +132,20 @@ C["filger_spells"] = {
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Self
+			-- Apocalypse
+			{spellID = 220143, filter = "CD"},
+			-- Sindragosa's Fury
+			{spellID = 190778, filter = "CD"},
+			-- Consumption
+			{spellID = 205223, filter = "CD"},
+			-- Bonestorm
+			{spellID = 194844, filter = "CD"},
+			-- Asphyxiate
+			{spellID = 221562, filter = "CD"},
+			-- Blinding Sleet
+			{spellID = 207167, filter = "CD"},
+			-- Hungering Rune Weapon
+			{spellID = 207127, filter = "CD"},
 			-- Mind Freeze
 			{spellID = 47528, filter = "CD"},
 			-- Strangulate
@@ -217,7 +187,7 @@ C["filger_spells"] = {
 			-- Breath of Sindragosa
 			{spellID = 152279, filter = "CD"},
 			-- Lichborne
-			{spellID = 49039, filter = "CD"},
+			--BETA {spellID = 49039, filter = "CD"},
 			-- Desecrated Ground
 			{spellID = 108201, filter = "CD"},
 			-- Death Pact
@@ -291,7 +261,7 @@ C["filger_spells"] = {
 			-- Metamorphosis
 			{spellID = 187827, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Empower Wards
-			{spellID = 218256, unitID = "player", caster = "player", filter = "BUFF"},
+			--BETA {spellID = 218256, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Darkness
 			{spellID = 196718, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Immolation Aura
@@ -303,7 +273,7 @@ C["filger_spells"] = {
 			-- Blur
 			{spellID = 212800, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Chaos Blades
-			{spellID = 211048, unitID = "player", caster = "player", filter = "BUFF"},
+			--BETA {spellID = 211048, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Netherwalk
 			{spellID = 196555, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Nether Bond
@@ -327,71 +297,9 @@ C["filger_spells"] = {
 			{spellID = 208628, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Trinkets
-			-- Alchemy Stones
-			-- Agility
-			{spellID = 60233, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Drunken Evasiveness (Bonus Armor, Use) [Brawler's Statue]
-			{spellID = 127967, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Reflection of Torment (Attack Power, Proc) [Coren's Cold Chromium]
-			{spellID = 127928, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Conquest (Agility, Proc)
-			{spellID = 190026, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Tanking
-			-- Cunning of the Deceiver (Special, Proc) [Shifting Cosmic Sliver]
-			{spellID = 242628, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Living Carapace (Damage Reduction, Use) [Animated Exoskeleton]
-			{spellID = 225033, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Vampiric Aura (Leech, Use) [Fang of Tichcondrius]
-			{spellID = 225130, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Infernal Contract (Damage Reduction, Use) [Infernal Contract]
-			{spellID = 225140, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Sands of Time (DoT, Proc) [Royal Dagger Haft]
-			{spellID = 225720, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shadowy Reflection (Damage Reduction, Proc) [Phantasmal Echo]
-			{spellID = 222479, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nightmarish Ichor (Versatility, Proc) [Goblet of Nightmarish Ichor]
-			{spellID = 222027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wild God's Fury (Health, Use) [Unbridled Fury]
-			{spellID = 221695, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Darkening Soul (Damage Reduction, Proc) [Grotesque Statuette]
-			{spellID = 222209, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Agility]
-			-- Blood Frenzy (Haste, Proc) [Bloodthirsty Instinct]
-			{spellID = 221796, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Fiery Enchant (Crit, Proc) [Entwined Elemental Foci]
-			{spellID = 225726, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Frost Enchant (Mastery, Proc) [Entwined Elemental Foci]
-			{spellID = 225729, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Arcane Enchant (Haste, Proc) [Entwined Elemental Foci]
-			{spellID = 225730, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Ancient's Blessing (Crit, Proc) [Nature's Call]
-			{spellID = 222517, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Wisp's Blessing (Mastery, Proc) [Nature's Call]
-			{spellID = 222518, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Sister's Blessing (Haste, Proc) [Nature's Call]
-			{spellID = 222519, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Howl of Ingvar (Crit, Proc) [Memento of Angerboda]
-			{spellID = 214802, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wail of Svala (Haste, Proc) [Memento of Angerboda]
-			{spellID = 214803, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Dirge of Angerboda (Mastery, Proc) [Memento of Angerboda]
-			{spellID = 214807, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Down Draft (Haste, Proc) [Nightmare Egg Shell]
-			{spellID = 214342, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Mark of the Heavy Hide (Armor)
-			{spellID = 228399, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -402,6 +310,8 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
+			-- Dark Slash
+			{spellID = 258860, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Nemesis
 			{spellID = 206491, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Sigil of Flame
@@ -488,7 +398,7 @@ C["filger_spells"] = {
 			-- Sigil of Misery
 			{spellID = 207684, filter = "CD"},
 			-- Empower Wards
-			{spellID = 218256, filter = "CD"},
+			--BETA {spellID = 218256, filter = "CD"},
 			-- Spectral Sight
 			{spellID = 188501, filter = "CD"},
 			-- Fiery Brand
@@ -514,7 +424,7 @@ C["filger_spells"] = {
 			-- Netherwalk
 			{spellID = 196555, filter = "CD"},
 			-- Chaos Blades
-			{spellID = 211048, filter = "CD"},
+			--BETA {spellID = 211048, filter = "CD"},
 			-- Nemesis
 			{spellID = 206491, filter = "CD"},
 			-- Metamorphosis
@@ -608,6 +518,10 @@ C["filger_spells"] = {
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Buffs
+			-- Warrior of Elune
+			{spellID = 202425, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Starlord
+			{spellID = 279709, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Bloodtalons
 			{spellID = 145152, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Clearcasting
@@ -620,113 +534,11 @@ C["filger_spells"] = {
 			{spellID = 213680, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Item Sets
-			-- Natural Defenses (T19)
-			{spellID = 211160, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Trinkets
-			-- Alchemy Stones
-			-- Agility
-			{spellID = 60233, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Intellect
-			{spellID = 60234, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Drunken Evasiveness (Bonus Armor, Use) [Brawler's Statue]
-			{spellID = 127967, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Reflection of Torment (Attack Power, Proc) [Coren's Cold Chromium]
-			{spellID = 127928, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Now is the time! (Spell Power, Proc) [Mithril Wristwatch]
-			{spellID = 127923, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Essence of Life (Haste, Proc) [Thousand-Year Pickled Egg]
-			{spellID = 127915, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Dominance (Intellect, Proc)
-			{spellID = 190027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Conquest (Agility, Proc)
-			{spellID = 190026, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Tanking
-			-- Cunning of the Deceiver (Special, Proc) [Shifting Cosmic Sliver]
-			{spellID = 242628, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Living Carapace (Damage Reduction, Use) [Animated Exoskeleton]
-			{spellID = 225033, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Vampiric Aura (Leech, Use) [Fang of Tichcondrius]
-			{spellID = 225130, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Infernal Contract (Damage Reduction, Use) [Infernal Contract]
-			{spellID = 225140, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Sands of Time (DoT, Proc) [Royal Dagger Haft]
-			{spellID = 225720, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shadowy Reflection (Damage Reduction, Proc) [Phantasmal Echo]
-			{spellID = 222479, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nightmarish Ichor (Versatility, Proc) [Goblet of Nightmarish Ichor]
-			{spellID = 222027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wild God's Fury (Health, Use) [Unbridled Fury]
-			{spellID = 221695, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Darkening Soul (Damage Reduction, Proc) [Grotesque Statuette]
-			{spellID = 222209, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Crystalline Body (Damage Reduction, Use) [Shard of Rokmora]
-			{spellID = 214366, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Stance of the Mountain (Damage Reduction, Use) [Talisman of the Cragshaper]
-			{spellID = 214423, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Warlord's Fortitude (Health and Mastery, Proc) [Parjesh's Medallion]
-			{spellID = 214622, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nerubian Chitin (Armor, Proc) [Impenetrable Nerubian Husk]
-			{spellID = 214494, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Agility]
-			-- Blood Frenzy (Haste, Proc) [Bloodthirsty Instinct]
-			{spellID = 221796, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Fiery Enchant (Crit, Proc) [Entwined Elemental Foci]
-			{spellID = 225726, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Frost Enchant (Mastery, Proc) [Entwined Elemental Foci]
-			{spellID = 225729, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Arcane Enchant (Haste, Proc) [Entwined Elemental Foci]
-			{spellID = 225730, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Ancient's Blessing (Crit, Proc) [Nature's Call]
-			{spellID = 222517, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Wisp's Blessing (Mastery, Proc) [Nature's Call]
-			{spellID = 222518, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Sister's Blessing (Haste, Proc) [Nature's Call]
-			{spellID = 222519, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Howl of Ingvar (Crit, Proc) [Memento of Angerboda]
-			{spellID = 214802, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wail of Svala (Haste, Proc) [Memento of Angerboda]
-			{spellID = 214803, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Dirge of Angerboda (Mastery, Proc) [Memento of Angerboda]
-			{spellID = 214807, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Down Draft (Haste, Proc) [Nightmare Egg Shell]
-			{spellID = 214342, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Intellect]
-			-- Nefarious Pact (Cast speed, Proc) [Whispers in the Dark]
-			{spellID = 225774, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Focused Lightning (Mastery, Proc) [Stormsinger Fulmination Charge]
-			{spellID = 215632, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Collapsing Shadow (Agility, Use) [Obelisk of the Void]
-			{spellID = 215476, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Elune's Light (Agility, Use) [Moonlit Prism]
-			{spellID = 215648, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Burning Intensity (Crit, Proc) [Infernal Writ]
-			{spellID = 215816, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Maddening Whispers (Damage, Proc) [Wriggling Sinew]
-			{spellID = 222046, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Healing
-			-- Constellations (Mastery, Haste, or Critical Strike, Proc) [Etraeus' Celestial Map]
-			{spellID = 225136, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Heightened Senses (Haste and Intellect, Proc) [Heightened Senses]
-			{spellID = 221752, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Phased Webbing (Mastery, Proc) [Thrumming Gossamer]
-			{spellID = 215198, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Solemnity (Haste, Proc) [Flask of the Solemn Night]
-			{spellID = 224347, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Mark of the Heavy Hide (Armor)
-			{spellID = 228399, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -743,6 +555,8 @@ C["filger_spells"] = {
 			{spellID = 164815, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Stellar Flare
 			{spellID = 202347, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Ashmane's Frenzy
+			{spellID = 210722, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Rake
 			{spellID = 155722, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
 			-- Rip
@@ -753,8 +567,7 @@ C["filger_spells"] = {
 			{spellID = 45334, unitID = "target", caster = "player", filter = "DEBUFF"},
 
 			-- Trinket Effects
-			-- Mark of Doom [Prophecy of Fear]
-			{spellID = 184073, unitID = "target", caster = "player", filter = "DEBUFF"},
+			
 		},
 		{
 			Name = "T_DE/BUFF_BAR",
@@ -771,6 +584,8 @@ C["filger_spells"] = {
 			{spellID = 33763, unitID = "target", caster = "player", filter = "BUFF"},
 			-- Rejuvenation
 			{spellID = 774, unitID = "target", caster = "player", filter = "BUFF"},
+			-- Rejuvenation (Germination)
+			{spellID = 155777, unitID = "target", caster = "player", filter = "BUFF"},
 			-- Regrowth
 			{spellID = 8936, unitID = "target", caster = "player", filter = "BUFF"},
 			-- Wild Growth
@@ -850,6 +665,8 @@ C["filger_spells"] = {
 			{spellID = 124974, filter = "CD"},
 			-- Berserk
 			{spellID = 106951, filter = "CD", absID = true},
+			-- Ashmane's Frenzy
+			{spellID = 210722, filter = "CD"},
 			-- Incarnation: Chosen of Elune
 			{spellID = 102560, filter = "CD"},
 			-- Incarnation: King of the Jungle
@@ -900,6 +717,8 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
+			-- Coordinated Assault
+			{spellID = 266779, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Aspect of the Turtle
 			{spellID = 186265, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Bestial Wrath
@@ -943,6 +762,16 @@ C["filger_spells"] = {
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Buffs
+			-- Viper's Venom
+			{spellID = 268552, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Trick Shots
+			{spellID = 257622, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Lethal Shots
+			{spellID = 260395, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Precise Shots
+			{spellID = 260242, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Frenzy
+			{spellID = 272790, unitID = "pet", caster = "player", filter = "BUFF"},
 			-- Steady Focus
 			{spellID = 193533, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Lock and Load
@@ -954,67 +783,16 @@ C["filger_spells"] = {
 			-- Beast Cleave
 			{spellID = 118455, unitID = "pet", caster = "player", filter = "BUFF"},
 			-- Marking Targets
-			{spellID = 223138, unitID = "player", caster = "player", filter = "BUFF"},
+			--BETA {spellID = 223138, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Frenzy
 			{spellID = 19615, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Mend Pet
 			{spellID = 136, unitID = "pet", caster = "player", filter = "BUFF"},
 
 			-- Trinkets
-			-- Alchemy Stones
-			-- Agility
-			{spellID = 60233, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Reflection of Torment (Attack Power, Proc) [Coren's Cold Chromium]
-			{spellID = 127928, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Conquest (Agility, Proc)
-			{spellID = 190026, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Agility]
-			-- Blood Frenzy (Haste, Proc) [Bloodthirsty Instinct]
-			{spellID = 221796, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Fiery Enchant (Crit, Proc) [Entwined Elemental Foci]
-			{spellID = 225726, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Frost Enchant (Mastery, Proc) [Entwined Elemental Foci]
-			{spellID = 225729, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Arcane Enchant (Haste, Proc) [Entwined Elemental Foci]
-			{spellID = 225730, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Ancient's Blessing (Crit, Proc) [Nature's Call]
-			{spellID = 222517, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Wisp's Blessing (Mastery, Proc) [Nature's Call]
-			{spellID = 222518, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Sister's Blessing (Haste, Proc) [Nature's Call]
-			{spellID = 222519, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Howl of Ingvar (Crit, Proc) [Memento of Angerboda]
-			{spellID = 214802, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wail of Svala (Haste, Proc) [Memento of Angerboda]
-			{spellID = 214803, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Dirge of Angerboda (Mastery, Proc) [Memento of Angerboda]
-			{spellID = 214807, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Down Draft (Haste, Proc) [Nightmare Egg Shell]
-			{spellID = 214342, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Focused Lightning (Mastery, Proc) [Stormsinger Fulmination Charge]
-			{spellID = 215632, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Collapsing Shadow (Agility, Use) [Obelisk of the Void]
-			{spellID = 215476, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Elune's Light (Agility, Use) [Moonlit Prism]
-			{spellID = 215648, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Gyroscopic Stabilization
-			{spellID = 235712, unitID = "player", caster = "player", filter = "BUFF"},
-			-- The Shadow Hunter's Regeneration
-			{spellID = 208888, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Sentinel's Sight
-			{spellID = 208913, unitID = "player", caster = "player", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -1033,10 +811,12 @@ C["filger_spells"] = {
 			{spellID = 185855, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- A Murder of Crows
 			{spellID = 131894, unitID = "target", caster = "player", filter = "DEBUFF"},
-			-- Vulnerable
-			{spellID = 187131, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Hunter's Mark
-			{spellID = 185365, unitID = "target", caster = "player", filter = "DEBUFF"},
+			{spellID = 257284, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Vulnerable
+			--BETA {spellID = 187131, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Hunter's Mark
+			--BETA {spellID = 185365, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Narrow Escape
 			{spellID = 136634, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Entrapment
@@ -1214,10 +994,6 @@ C["filger_spells"] = {
 			{spellID = 12042, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Combustion
 			{spellID = 190319, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rune of Power
-			{spellID = 116014, filter = "ICD", trigger = "NONE", duration = 10},
-			-- Pyretic Incantation
-			{spellID = 194329, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Blazing Barrier
 			{spellID = 235313, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Prismatic Barrier
@@ -1228,12 +1004,12 @@ C["filger_spells"] = {
 			{spellID = 48107, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Ice Floes
 			{spellID = 108839, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Evanesce
-			{spellID = 157913, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Temporal Shield
 			{spellID = 198111, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Mirror Image
 			{spellID = 55342, filter = "ICD", trigger = "NONE", duration = 40},
+			-- Icicles
+			{spellID = 205473, unitID = "player", caster = "player", filter = "BUFF"},
 		},
 		{
 			Name = "P_PROC_ICON",
@@ -1248,51 +1024,22 @@ C["filger_spells"] = {
 			-- Fingers of Frost
 			{spellID = 44544, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Brain Freeze
-			{spellID = 190447, unitID = "player", caster = "player", filter = "BUFF"},
+			{spellID = 190446, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Glacial Spike!
 			{spellID = 199844, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Arcane Missiles!
-			{spellID = 79683, unitID = "player", caster = "player", filter = "BUFF"},
+			--BETA {spellID = 79683, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Hot Streak!
 			{spellID = 48108, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Kael'thas's Ultimate Ability
-			{spellID = 209455, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Freezing Rain
-			{spellID = 240555, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Pyroclasm
+			{spellID = 269651, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Clearcasting
+			{spellID = 263725, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Trinkets
-			-- Alchemy Stones
-			-- Intellect
-			{spellID = 60234, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Now is the time! (Spell Power, Proc) [Mithril Wristwatch]
-			{spellID = 127923, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Dominance (Intellect, Proc)
-			{spellID = 190027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Intellect]
-			-- Nefarious Pact (Cast speed, Proc) [Whispers in the Dark]
-			{spellID = 225774, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Focused Lightning (Mastery, Proc) [Stormsinger Fulmination Charge]
-			{spellID = 215632, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Collapsing Shadow (Agility, Use) [Obelisk of the Void]
-			{spellID = 215476, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Elune's Light (Agility, Use) [Moonlit Prism]
-			{spellID = 215648, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Burning Intensity (Crit, Proc) [Infernal Writ]
-			{spellID = 215816, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Maddening Whispers (Damage, Proc) [Wriggling Sinew]
-			{spellID = 222046, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -1309,14 +1056,8 @@ C["filger_spells"] = {
 			{spellID = 44457, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Nether Tempest
 			{spellID = 114923, unitID = "target", caster = "player", filter = "DEBUFF"},
-			-- Frost Bomb
-			{spellID = 112948, unitID = "target", caster = "player", filter = "DEBUFF"},
-			-- Pyroblast
-			{spellID = 11366, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Freeze (Pet)
 			{spellID = 33395, unitID = "target", caster = "all", filter = "DEBUFF"},
-			-- Water Jet (Pet)
-			{spellID = 135029, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Frostbite
 			{spellID = 198121, unitID = "target", caster = "all", filter = "DEBUFF"},
 			-- Frost Nova
@@ -1331,8 +1072,7 @@ C["filger_spells"] = {
 			{spellID = 31589, unitID = "target", caster = "player", filter = "DEBUFF"},
 
 			-- Trinket Effects
-			-- Mark of Doom [Prophecy of Fear]
-			{spellID = 184073, unitID = "target", caster = "player", filter = "DEBUFF"},
+			
 		},
 		{
 			Name = "PVE/PVP_CC",
@@ -1358,6 +1098,8 @@ C["filger_spells"] = {
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Self
+			-- Remove Curse
+			{spellID = 475, filter = "CD"},
 			-- Counterspell
 			{spellID = 2139, filter = "CD"},
 			-- Living Bomb
@@ -1382,8 +1124,6 @@ C["filger_spells"] = {
 			{spellID = 108853, filter = "CD"},
 			-- Cone of Cold
 			{spellID = 120, filter = "CD"},
-			-- Water Jet (Pet)
-			{spellID = 135029, filter = "CD"},
 			-- Comet Storm
 			{spellID = 153595, filter = "CD"},
 			-- Ice Floes
@@ -1543,98 +1283,11 @@ C["filger_spells"] = {
 			{spellID = 196741, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Item Sets
-			-- Combo Master (T19)
-			{spellID = 211432, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Trinkets
-			-- Alchemy Stones
-			-- Agility
-			{spellID = 60233, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Intellect
-			{spellID = 60234, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Drunken Evasiveness (Bonus Armor, Use) [Brawler's Statue]
-			{spellID = 127967, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Reflection of Torment (Attack Power, Proc) [Coren's Cold Chromium]
-			{spellID = 127928, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Essence of Life (Haste, Proc) [Thousand-Year Pickled Egg]
-			{spellID = 127915, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Conquest (Agility, Proc)
-			{spellID = 190026, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Dominance (Intellect, Proc)
-			{spellID = 190027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Tanking
-			-- Cunning of the Deceiver (Special, Proc) [Shifting Cosmic Sliver]
-			{spellID = 242628, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Living Carapace (Damage Reduction, Use) [Animated Exoskeleton]
-			{spellID = 225033, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Vampiric Aura (Leech, Use) [Fang of Tichcondrius]
-			{spellID = 225130, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Infernal Contract (Damage Reduction, Use) [Infernal Contract]
-			{spellID = 225140, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Sands of Time (DoT, Proc) [Royal Dagger Haft]
-			{spellID = 225720, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shadowy Reflection (Damage Reduction, Proc) [Phantasmal Echo]
-			{spellID = 222479, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nightmarish Ichor (Versatility, Proc) [Goblet of Nightmarish Ichor]
-			{spellID = 222027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wild God's Fury (Health, Use) [Unbridled Fury]
-			{spellID = 221695, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Darkening Soul (Damage Reduction, Proc) [Grotesque Statuette]
-			{spellID = 222209, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Crystalline Body (Damage Reduction, Use) [Shard of Rokmora]
-			{spellID = 214366, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Stance of the Mountain (Damage Reduction, Use) [Talisman of the Cragshaper]
-			{spellID = 214423, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Warlord's Fortitude (Health and Mastery, Proc) [Parjesh's Medallion]
-			{spellID = 214622, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nerubian Chitin (Armor, Proc) [Impenetrable Nerubian Husk]
-			{spellID = 214494, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Agility]
-			-- Blood Frenzy (Haste, Proc) [Bloodthirsty Instinct]
-			{spellID = 221796, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Fiery Enchant (Crit, Proc) [Entwined Elemental Foci]
-			{spellID = 225726, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Frost Enchant (Mastery, Proc) [Entwined Elemental Foci]
-			{spellID = 225729, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Arcane Enchant (Haste, Proc) [Entwined Elemental Foci]
-			{spellID = 225730, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Ancient's Blessing (Crit, Proc) [Nature's Call]
-			{spellID = 222517, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Wisp's Blessing (Mastery, Proc) [Nature's Call]
-			{spellID = 222518, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Sister's Blessing (Haste, Proc) [Nature's Call]
-			{spellID = 222519, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Howl of Ingvar (Crit, Proc) [Memento of Angerboda]
-			{spellID = 214802, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wail of Svala (Haste, Proc) [Memento of Angerboda]
-			{spellID = 214803, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Dirge of Angerboda (Mastery, Proc) [Memento of Angerboda]
-			{spellID = 214807, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Down Draft (Haste, Proc) [Nightmare Egg Shell]
-			{spellID = 214342, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Healing
-			-- Constellations (Mastery, Haste, or Critical Strike, Proc) [Etraeus' Celestial Map]
-			{spellID = 225136, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Heightened Senses (Haste and Intellect, Proc) [Heightened Senses]
-			{spellID = 221752, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Phased Webbing (Mastery, Proc) [Thrumming Gossamer]
-			{spellID = 215198, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Solemnity (Haste, Proc) [Flask of the Solemn Night]
-			{spellID = 224347, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Mark of the Heavy Hide (Armor)
-			{spellID = 228399, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -1645,6 +1298,8 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
+			-- Touch of Death
+			{spellID = 115080, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Heavy Stagger
 			{spellID = 124273, unitID = "player", caster = "player", filter = "DEBUFF"},
 			-- Keg Smash
@@ -1790,6 +1445,14 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
+			-- Inquisition
+			{spellID = 84963, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Shield of Vengeance
+			{spellID = 184662, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Eye for an Eye
+			{spellID = 205191, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Crusade
+			{spellID = 231895, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Divine Shield
 			{spellID = 642, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Guardian of Ancient Kings
@@ -1811,7 +1474,7 @@ C["filger_spells"] = {
 			-- Speed of Light
 			{spellID = 85499, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Eternal Flame
-			{spellID = 114163, unitID = "player", caster = "player", filter = "BUFF"},
+			--BETA {spellID = 114163, unitID = "player", caster = "player", filter = "BUFF"},
 		},
 		{
 			Name = "P_PROC_ICON",
@@ -1823,6 +1486,8 @@ C["filger_spells"] = {
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Buffs
+			-- Righteous Verdict
+			{spellID = 267611, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Infusion of Light
 			{spellID = 54149, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Selfless Healer
@@ -1837,92 +1502,9 @@ C["filger_spells"] = {
 			{spellID = 209785, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Trinkets
-			-- Alchemy Stones
-			-- Strength
-			{spellID = 60229, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Intellect
-			{spellID = 60234, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Drunken Evasiveness (Bonus Armor, Use) [Brawler's Statue]
-			{spellID = 127967, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Reflection of Torment (Attack Power, Proc) [Coren's Cold Chromium]
-			{spellID = 127928, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Essence of Life (Haste, Proc) [Thousand-Year Pickled Egg]
-			{spellID = 127915, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Victory (Strength, Proc)
-			{spellID = 190025, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Dominance (Intellect, Proc)
-			{spellID = 190027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Tanking
-			-- Cunning of the Deceiver (Special, Proc) [Shifting Cosmic Sliver]
-			{spellID = 242628, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Living Carapace (Damage Reduction, Use) [Animated Exoskeleton]
-			{spellID = 225033, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Vampiric Aura (Leech, Use) [Fang of Tichcondrius]
-			{spellID = 225130, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Infernal Contract (Damage Reduction, Use) [Infernal Contract]
-			{spellID = 225140, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Sands of Time (DoT, Proc) [Royal Dagger Haft]
-			{spellID = 225720, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shadowy Reflection (Damage Reduction, Proc) [Phantasmal Echo]
-			{spellID = 222479, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nightmarish Ichor (Versatility, Proc) [Goblet of Nightmarish Ichor]
-			{spellID = 222027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wild God's Fury (Health, Use) [Unbridled Fury]
-			{spellID = 221695, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Darkening Soul (Damage Reduction, Proc) [Grotesque Statuette]
-			{spellID = 222209, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Crystalline Body (Damage Reduction, Use) [Shard of Rokmora]
-			{spellID = 214366, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Stance of the Mountain (Damage Reduction, Use) [Talisman of the Cragshaper]
-			{spellID = 214423, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Warlord's Fortitude (Health and Mastery, Proc) [Parjesh's Medallion]
-			{spellID = 214622, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nerubian Chitin (Armor, Proc) [Impenetrable Nerubian Husk]
-			{spellID = 214494, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Strength]
-			-- Fiery Enchant (Crit, Proc) [Entwined Elemental Foci]
-			{spellID = 225726, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Frost Enchant (Mastery, Proc) [Entwined Elemental Foci]
-			{spellID = 225729, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Arcane Enchant (Haste, Proc) [Entwined Elemental Foci]
-			{spellID = 225730, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Ancient's Blessing (Crit, Proc) [Nature's Call]
-			{spellID = 222517, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Wisp's Blessing (Mastery, Proc) [Nature's Call]
-			{spellID = 222518, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Sister's Blessing (Haste, Proc) [Nature's Call]
-			{spellID = 222519, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Howl of Ingvar (Crit, Proc) [Memento of Angerboda]
-			{spellID = 214802, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wail of Svala (Haste, Proc) [Memento of Angerboda]
-			{spellID = 214803, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Dirge of Angerboda (Mastery, Proc) [Memento of Angerboda]
-			{spellID = 214807, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Down Draft (Haste, Proc) [Nightmare Egg Shell]
-			{spellID = 214342, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Healing
-			-- Constellations (Mastery, Haste, or Critical Strike, Proc) [Etraeus' Celestial Map]
-			{spellID = 225136, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Heightened Senses (Haste and Intellect, Proc) [Heightened Senses]
-			{spellID = 221752, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Phased Webbing (Mastery, Proc) [Thrumming Gossamer]
-			{spellID = 215198, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Solemnity (Haste, Proc) [Flask of the Solemn Night]
-			{spellID = 224347, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Mark of the Heavy Hide (Armor)
-			{spellID = 228399, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -1933,6 +1515,10 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
+			-- Execution Sentence
+			{spellID = 267799, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Eye of Tyr
+			{spellID = 209202, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Forbearance
 			{spellID = 25771, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Judgment
@@ -1941,8 +1527,7 @@ C["filger_spells"] = {
 			{spellID = 183218, unitID = "target", caster = "player", filter = "DEBUFF"},
 
 			-- Trinket Effects
-			-- Fel Burn [Empty Drinking Horn]
-			{spellID = 184256, unitID = "target", caster = "player", filter = "DEBUFF"},
+			
 		},
 		{
 			Name = "COOLDOWN",
@@ -1954,6 +1539,8 @@ C["filger_spells"] = {
 			Position = {"TOP", COOLDOWN_Anchor},
 
 			-- Self
+			-- Eye of Tyr
+			{spellID = 209202, filter = "CD"},
 			-- Cleanse
 			{spellID = 4987, filter = "CD"},
 			-- Rebuke
@@ -1985,7 +1572,7 @@ C["filger_spells"] = {
 			-- Divine Protection
 			{spellID = 498, filter = "CD", absID = true},
 			-- Execution Sentence
-			{spellID = 213757, filter = "CD"},
+			--BETA {spellID = 213757, filter = "CD"},
 			-- Light's Hammer
 			{spellID = 114158, filter = "CD"},
 			-- Blinding Light
@@ -2050,6 +1637,12 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
+			-- Rapture
+			{spellID = 47536, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Desperate Prayer
+			{spellID = 19236, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Voidform
+			{spellID = 194249, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Dispersion
 			{spellID = 47585, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Power Infusion
@@ -2062,6 +1655,8 @@ C["filger_spells"] = {
 			{spellID = 20711, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Divinity
 			{spellID = 197030, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Power of the Naaru
+			{spellID = 196490, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Archangel
 			{spellID = 197862, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Vampiric Embrace
@@ -2078,8 +1673,7 @@ C["filger_spells"] = {
 			{spellID = 17, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Renew
 			{spellID = 139, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Power of the Dark Side
-			{spellID = 198069, unitID = "player", caster = "player", filter = "BUFF"},
+
 		},
 		{
 			Name = "P_PROC_ICON",
@@ -2091,6 +1685,10 @@ C["filger_spells"] = {
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Buffs
+			-- Power of the Dark Side
+			{spellID = 198069, unitID = "player", caster = "player", filter = "BUFF"},			
+			-- Lingering Insanity
+			{spellID = 197937, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Shadowy Insight
 			{spellID = 124430, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Surge of Light
@@ -2101,49 +1699,9 @@ C["filger_spells"] = {
 			{spellID = 123254, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Trinkets
-			-- Alchemy Stones
-			-- Intellect
-			{spellID = 60234, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Now is the time! (Spell Power, Proc) [Mithril Wristwatch]
-			{spellID = 127923, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Essence of Life (Haste, Proc) [Thousand-Year Pickled Egg]
-			{spellID = 127915, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Dominance (Intellect, Proc)
-			{spellID = 190027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Intellect]
-			-- Nefarious Pact (Cast speed, Proc) [Whispers in the Dark]
-			{spellID = 225774, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Focused Lightning (Mastery, Proc) [Stormsinger Fulmination Charge]
-			{spellID = 215632, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Collapsing Shadow (Agility, Use) [Obelisk of the Void]
-			{spellID = 215476, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Elune's Light (Agility, Use) [Moonlit Prism]
-			{spellID = 215648, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Burning Intensity (Crit, Proc) [Infernal Writ]
-			{spellID = 215816, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Maddening Whispers (Damage, Proc) [Wriggling Sinew]
-			{spellID = 222046, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Healing
-			-- Constellations (Mastery, Haste, or Critical Strike, Proc) [Etraeus' Celestial Map]
-			{spellID = 225136, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Heightened Senses (Haste and Intellect, Proc) [Heightened Senses]
-			{spellID = 221752, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Phased Webbing (Mastery, Proc) [Thrumming Gossamer]
-			{spellID = 215198, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Solemnity (Haste, Proc) [Flask of the Solemn Night]
-			{spellID = 224347, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -2154,9 +1712,11 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
+			-- Schism
+			{spellID = 214621, unitID = "target", caster = "player", filter = "DEBUFF"},
+
 			-- Trinket Effects
-			-- Mark of Doom [Prophecy of Fear]
-			{spellID = 184073, unitID = "target", caster = "player", filter = "DEBUFF"},
+			
 		},
 		{
 			Name = "T_DE/BUFF_BAR",
@@ -2178,7 +1738,7 @@ C["filger_spells"] = {
 			-- Pain Suppression
 			{spellID = 33206, unitID = "target", caster = "player", filter = "BUFF"},
 			-- Void Entropy
-			{spellID = 155361, unitID = "target", caster = "player", filter = "DEBUFF"},
+			--BETA {spellID = 155361, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Vampiric Touch
 			{spellID = 34914, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Shadow Word: Pain
@@ -2399,6 +1959,8 @@ C["filger_spells"] = {
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
 			-- Buffs
+			-- Shuriken Combo
+			{spellID = 245640, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Jolly Roger
 			{spellID = 199603, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Grand Melee
@@ -2413,52 +1975,11 @@ C["filger_spells"] = {
 			{spellID = 193357, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Item Sets
-			-- Deathly Shadows (T18)
-			{spellID = 188700, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Trinkets
-			-- Alchemy Stones
-			-- Agility
-			{spellID = 60233, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Reflection of Torment (Attack Power, Proc) [Coren's Cold Chromium]
-			{spellID = 127928, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Conquest (Agility, Proc)
-			{spellID = 190026, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Agility]
-			-- Blood Frenzy (Haste, Proc) [Bloodthirsty Instinct]
-			{spellID = 221796, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Fiery Enchant (Crit, Proc) [Entwined Elemental Foci]
-			{spellID = 225726, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Frost Enchant (Mastery, Proc) [Entwined Elemental Foci]
-			{spellID = 225729, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Arcane Enchant (Haste, Proc) [Entwined Elemental Foci]
-			{spellID = 225730, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Ancient's Blessing (Crit, Proc) [Nature's Call]
-			{spellID = 222517, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Wisp's Blessing (Mastery, Proc) [Nature's Call]
-			{spellID = 222518, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Sister's Blessing (Haste, Proc) [Nature's Call]
-			{spellID = 222519, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Howl of Ingvar (Crit, Proc) [Memento of Angerboda]
-			{spellID = 214802, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wail of Svala (Haste, Proc) [Memento of Angerboda]
-			{spellID = 214803, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Dirge of Angerboda (Mastery, Proc) [Memento of Angerboda]
-			{spellID = 214807, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Down Draft (Haste, Proc) [Nightmare Egg Shell]
-			{spellID = 214342, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -2557,7 +2078,7 @@ C["filger_spells"] = {
 			-- Crimson Vial
 			{spellID = 185311, filter = "CD"},
 			-- Cannonball Barrage
-			{spellID = 185767, filter = "CD"},
+			--BETA {spellID = 185767, filter = "CD"},
 			-- Garrote
 			{spellID = 703, filter = "CD"},
 			-- Exsanguinate
@@ -2632,8 +2153,6 @@ C["filger_spells"] = {
 			{spellID = 79206, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Unleash Life
 			{spellID = 73685, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Healing Stream Totem
-			{spellID = 5394, filter = "ICD", trigger = "NONE", duration = 15},
 			-- Doom Winds
 			{spellID = 204945, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Landslide
@@ -2676,79 +2195,12 @@ C["filger_spells"] = {
 			-- Flametongue
 			{spellID = 194084, unitID = "player", caster = "player", filter = "BUFF"},
 
+			-- Item Sets
+			
 			-- Trinkets
-			-- Alchemy Stones
-			-- Agility
-			{spellID = 60233, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Intellect
-			{spellID = 60234, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Reflection of Torment (Attack Power, Proc) [Coren's Cold Chromium]
-			{spellID = 127928, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Now is the time! (Spell Power, Proc) [Mithril Wristwatch]
-			{spellID = 127923, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Essence of Life (Haste, Proc) [Thousand-Year Pickled Egg]
-			{spellID = 127915, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Dominance (Intellect, Proc)
-			{spellID = 190027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Conquest (Agility, Proc)
-			{spellID = 190026, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Agility]
-			-- Blood Frenzy (Haste, Proc) [Bloodthirsty Instinct]
-			{spellID = 221796, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Fiery Enchant (Crit, Proc) [Entwined Elemental Foci]
-			{spellID = 225726, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Frost Enchant (Mastery, Proc) [Entwined Elemental Foci]
-			{spellID = 225729, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Arcane Enchant (Haste, Proc) [Entwined Elemental Foci]
-			{spellID = 225730, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Ancient's Blessing (Crit, Proc) [Nature's Call]
-			{spellID = 222517, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Wisp's Blessing (Mastery, Proc) [Nature's Call]
-			{spellID = 222518, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Sister's Blessing (Haste, Proc) [Nature's Call]
-			{spellID = 222519, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Howl of Ingvar (Crit, Proc) [Memento of Angerboda]
-			{spellID = 214802, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wail of Svala (Haste, Proc) [Memento of Angerboda]
-			{spellID = 214803, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Dirge of Angerboda (Mastery, Proc) [Memento of Angerboda]
-			{spellID = 214807, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Down Draft (Haste, Proc) [Nightmare Egg Shell]
-			{spellID = 214342, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Intellect]
-			-- Nefarious Pact (Cast speed, Proc) [Whispers in the Dark]
-			{spellID = 225774, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Focused Lightning (Mastery, Proc) [Stormsinger Fulmination Charge]
-			{spellID = 215632, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Collapsing Shadow (Agility, Use) [Obelisk of the Void]
-			{spellID = 215476, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Elune's Light (Agility, Use) [Moonlit Prism]
-			{spellID = 215648, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Burning Intensity (Crit, Proc) [Infernal Writ]
-			{spellID = 215816, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Maddening Whispers (Damage, Proc) [Wriggling Sinew]
-			{spellID = 222046, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Healing
-			-- Constellations (Mastery, Haste, or Critical Strike, Proc) [Etraeus' Celestial Map]
-			{spellID = 225136, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Heightened Senses (Haste and Intellect, Proc) [Heightened Senses]
-			{spellID = 221752, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Phased Webbing (Mastery, Proc) [Thrumming Gossamer]
-			{spellID = 215198, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Solemnity (Haste, Proc) [Flask of the Solemn Night]
-			{spellID = 224347, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -2771,8 +2223,7 @@ C["filger_spells"] = {
 			{spellID = 188089, unitID = "target", caster = "player", filter = "DEBUFF"},
 
 			-- Trinket Effects
-			-- Mark of Doom [Prophecy of Fear]
-			{spellID = 184073, unitID = "target", caster = "player", filter = "DEBUFF"},
+			
 		},
 		{
 			Name = "T_DE/BUFF_BAR",
@@ -2908,6 +2359,12 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
+			-- Dark Soul: Misery
+			{spellID = 113860, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Dark Soul: Instability
+			{spellID = 113858, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Deadwind Harvester
+			{spellID = 216708, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Unending Resolve
 			{spellID = 104773, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Soul Harvest
@@ -2941,38 +2398,9 @@ C["filger_spells"] = {
 			{spellID = 171982, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Trinkets
-			-- Alchemy Stones
-			-- Intellect
-			{spellID = 60234, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Now is the time! (Spell Power, Proc) [Mithril Wristwatch]
-			{spellID = 127923, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Dominance (Intellect, Proc)
-			{spellID = 190027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Intellect]
-			-- Nefarious Pact (Cast speed, Proc) [Whispers in the Dark]
-			{spellID = 225774, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Focused Lightning (Mastery, Proc) [Stormsinger Fulmination Charge]
-			{spellID = 215632, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Collapsing Shadow (Agility, Use) [Obelisk of the Void]
-			{spellID = 215476, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Elune's Light (Agility, Use) [Moonlit Prism]
-			{spellID = 215648, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Burning Intensity (Crit, Proc) [Infernal Writ]
-			{spellID = 215816, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Maddening Whispers (Damage, Proc) [Wriggling Sinew]
-			{spellID = 222046, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -2988,8 +2416,7 @@ C["filger_spells"] = {
 			{spellID = 1098, unitID = "target", caster = "player", filter = "DEBUFF"},
 
 			-- Trinket Effects
-			-- Mark of Doom [Prophecy of Fear]
-			{spellID = 184073, unitID = "target", caster = "player", filter = "DEBUFF"},
+			
 		},
 		{
 			Name = "T_DE/BUFF_BAR",
@@ -3015,7 +2442,15 @@ C["filger_spells"] = {
 			-- Immolate
 			{spellID = 348, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Unstable Affliction
-			{spellID = 30108, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
+			{spellID = 233490, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
+			-- Unstable Affliction 2nd
+			{spellID = 233496, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
+			-- Unstable Affliction 3rd
+			{spellID = 233497, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
+			-- Unstable Affliction 4th
+			{spellID = 233498, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
+			-- Unstable Affliction 5th
+			{spellID = 233499, unitID = "target", caster = "player", filter = "DEBUFF", absID = true},
 			-- Siphon Life
 			{spellID = 63106, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Soul Effigy
@@ -3133,6 +2568,14 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", P_BUFF_ICON_Anchor},
 
+			-- In For The Kill
+			{spellID = 248622, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Deadly Calm
+			{spellID = 262228, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Sweeping Strikes
+			{spellID = 260708, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Ignore Pain
+			{spellID = 190456, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Shield Wall
 			{spellID = 871, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Last Stand
@@ -3167,91 +2610,31 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", P_PROC_ICON_Anchor},
 
+			-- Overpower
+			{spellID = 7384, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Frothing Berserker
+			{spellID = 215572, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Furious Slash
+			{spellID = 202539, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Vengeance: Ignore Pain
+			{spellID = 202574, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Sudden Death
 			{spellID = 52437, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Raging Blow!
 			{spellID = 131116, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Ultimatum
-			{spellID = 122510, unitID = "player", caster = "player", filter = "BUFF"},
+			--BETA {spellID = 122510, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Meat Cleaver
 			{spellID = 85739, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Unyielding Strikes
-			{spellID = 169686, unitID = "player", caster = "player", filter = "BUFF"},
+			--BETA {spellID = 169686, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Enrage
 			{spellID = 184362, unitID = "player", caster = "player", filter = "BUFF"},
 
 			-- Trinkets
-			-- Alchemy Stones
-			-- Strength
-			{spellID = 60229, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Hallow's End
-			-- Drunken Evasiveness (Bonus Armor, Use) [Brawler's Statue]
-			{spellID = 127967, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Reflection of Torment (Attack Power, Proc) [Coren's Cold Chromium]
-			{spellID = 127928, unitID = "player", caster = "player", filter = "BUFF"},
-			-- PvP Trinkets
-			-- Savage Fortitude (Health, Use) [Battlemaster]
-			{spellID = 181706, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Surge of Victory (Strength, Proc)
-			{spellID = 190025, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Rapid Adaptation (Versatility, Use)
-			{spellID = 170397, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Tanking
-			-- Cunning of the Deceiver (Special, Proc) [Shifting Cosmic Sliver]
-			{spellID = 242628, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Living Carapace (Damage Reduction, Use) [Animated Exoskeleton]
-			{spellID = 225033, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Vampiric Aura (Leech, Use) [Fang of Tichcondrius]
-			{spellID = 225130, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Infernal Contract (Damage Reduction, Use) [Infernal Contract]
-			{spellID = 225140, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Sands of Time (DoT, Proc) [Royal Dagger Haft]
-			{spellID = 225720, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shadowy Reflection (Damage Reduction, Proc) [Phantasmal Echo]
-			{spellID = 222479, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nightmarish Ichor (Versatility, Proc) [Goblet of Nightmarish Ichor]
-			{spellID = 222027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wild God's Fury (Health, Use) [Unbridled Fury]
-			{spellID = 221695, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Darkening Soul (Damage Reduction, Proc) [Grotesque Statuette]
-			{spellID = 222209, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Crystalline Body (Damage Reduction, Use) [Shard of Rokmora]
-			{spellID = 214366, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Stance of the Mountain (Damage Reduction, Use) [Talisman of the Cragshaper]
-			{spellID = 214423, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Warlord's Fortitude (Health and Mastery, Proc) [Parjesh's Medallion]
-			{spellID = 214622, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nerubian Chitin (Armor, Proc) [Impenetrable Nerubian Husk]
-			{spellID = 214494, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Damage [Strength]
-			-- Fiery Enchant (Crit, Proc) [Entwined Elemental Foci]
-			{spellID = 225726, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Frost Enchant (Mastery, Proc) [Entwined Elemental Foci]
-			{spellID = 225729, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Arcane Enchant (Haste, Proc) [Entwined Elemental Foci]
-			{spellID = 225730, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Ancient's Blessing (Crit, Proc) [Nature's Call]
-			{spellID = 222517, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Wisp's Blessing (Mastery, Proc) [Nature's Call]
-			{spellID = 222518, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Cleansed Sister's Blessing (Haste, Proc) [Nature's Call]
-			{spellID = 222519, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Howl of Ingvar (Crit, Proc) [Memento of Angerboda]
-			{spellID = 214802, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Wail of Svala (Haste, Proc) [Memento of Angerboda]
-			{spellID = 214803, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Dirge of Angerboda (Mastery, Proc) [Memento of Angerboda]
-			{spellID = 214807, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Down Draft (Haste, Proc) [Nightmare Egg Shell]
-			{spellID = 214342, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Valarjar's Path (Primary stat, Use) [Horn of Valor]
-			{spellID = 215956, unitID = "player", caster = "player", filter = "BUFF"},
-
+			
 			-- Enchants
-			-- Mark of the Claw (Crit and Haste)
-			{spellID = 190909, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Mark of the Heavy Hide (Armor)
-			{spellID = 228399, unitID = "player", caster = "all", filter = "BUFF"},
+			
 		},
 		{
 			Name = "T_DEBUFF_ICON",
@@ -3262,6 +2645,8 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", T_DEBUFF_ICON_Anchor},
 
+			-- Siegebreaker
+			{spellID = 280773, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Rend
 			{spellID = 772, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Colossus Smash
@@ -3272,8 +2657,7 @@ C["filger_spells"] = {
 			{spellID = 1160, unitID = "target", caster = "all", filter = "DEBUFF"},
 
 			-- Trinket Effects
-			-- Fel Burn [Empty Drinking Horn]
-			{spellID = 184256, unitID = "target", caster = "player", filter = "DEBUFF"},
+			
 		},
 		{
 			Name = "COOLDOWN",
@@ -3304,7 +2688,7 @@ C["filger_spells"] = {
 			-- Spell Reflection
 			{spellID = 23920, filter = "CD"},
 			-- Intervene
-			{spellID = 3411, filter = "CD"},
+			--BETA {spellID = 3411, filter = "CD"},
 			-- Berserker Rage
 			{spellID = 18499, filter = "CD"},
 			-- Heroic Leap
@@ -3323,6 +2707,12 @@ C["filger_spells"] = {
 			{spellID = 97462, filter = "CD"},
 			-- Shield Wall
 			{spellID = 871, filter = "CD"},
+			-- Odyn's Fury
+			{spellID = 205545, filter = "CD"},
+			-- Battle Cry
+			{spellID = 1719, filter = "CD"},
+			-- Avatar
+			{spellID = 107574, filter = "CD"},
 
 			-- PvP
 			-- Honorable Medallion
@@ -3385,36 +2775,9 @@ C["filger_spells"] = {
 			IconSize = C.filger.buffs_size,
 			Position = {"TOP", SPECIAL_P_BUFF_ICON_Anchor},
 
-			-- Ashran
-			-- Ancient Artifact
-			{spellID = 168506, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Boulder Shield
-			{spellID = 169373, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Scroll of Speed
-			{spellID = 171250, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Scroll of Protection
-			{spellID = 171249, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Star Root Tuber
-			{spellID = 161495, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Wand of Lightning Shield
-			{spellID = 171725, unitID = "player", caster = "all", filter = "BUFF"},
-
-			-- Potions: Legion
-			-- Potion of Prolonged Power
-			{spellID = 229206, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Potion of the Old War
-			{spellID = 188028, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Potion of Deadly Grace
-			{spellID = 188027, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Leytorrent Potion
-			{spellID = 188030, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Skaggldrynk
-			{spellID = 188023, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Unbending Potion
-			{spellID = 188029, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Potions: Miscellaneous
-			-- Skystep Potion
-			{spellID = 188024, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Skaggldrynk [Legion invisibility potion]
+			{spellID = 188023, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Invisibility Potion
 			{spellID = 11392, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Darkwater Potion
@@ -3425,13 +2788,6 @@ C["filger_spells"] = {
 			{spellID = 175790, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Speed [Swiftness Potion]
 			{spellID = 2379, unitID = "player", caster = "player", filter = "BUFF", absID = true},
-			-- Potions: Brawler's Guild
-			-- Brawler's Draenic Agility Potion
-			{spellID = 176107, unitID = "player", caster = "player", filter = "BUFF", absID = true},
-			-- Brawler's Draenic Intellect Potion
-			{spellID = 176108, unitID = "player", caster = "player", filter = "BUFF", absID = true},
-			-- Brawler's Draenic Strength Potion
-			{spellID = 176109, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 
 			-- Raid Amplifiers
 			-- Ancient Hysteria
@@ -3448,18 +2804,6 @@ C["filger_spells"] = {
 			{spellID = 32182, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Time Warp
 			{spellID = 80353, unitID = "player", caster = "all", filter = "BUFF"},
-
-			-- Legendaries
-			-- Norgannon's Foresight [Boots]
-			{spellID = 236380, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Zann'esu Journey [Waist]
-			{spellID = 226852, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Belo'vir's Final Stand [Chest]
-			{spellID = 207283, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Magtheridon's Banished Bracers [Wrists]
-			{spellID = 214404, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Shattered Fragments of Sindragosa [Head]
-			{spellID = 248176, unitID = "player", caster = "all", filter = "BUFF"},
 
 			-- Professions
 			-- Goblin Glider [Goblin Glider Kit]
@@ -3492,8 +2836,6 @@ C["filger_spells"] = {
 			{spellID = 43681, unitID = "player", caster = "all", filter = "DEBUFF", absID = true},
 			-- Speed (Battlegrounds)
 			{spellID = 23451, unitID = "player", caster = "all", filter = "BUFF", absID = true},
-			-- Fel Sludge (Tanaan Jungle)
-			{spellID = 188520, unitID = "player", caster = "all", filter = "DEBUFF", absID = true},
 			-- Strange Feeling (Brawler's Guild)
 			{spellID = 134851, unitID = "player", caster = "all", filter = "DEBUFF", absID = true},
 
@@ -3527,7 +2869,7 @@ C["filger_spells"] = {
 			-- Grounding Totem
 			{spellID = 8178, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Mass Spell Reflection
-			{spellID = 114028, unitID = "player", caster = "all", filter = "BUFF"},
+			--BETA {spellID = 114028, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Tiger's Lust
 			{spellID = 116841, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Body and Soul
@@ -3719,7 +3061,7 @@ C["filger_spells"] = {
 			-- Debilitate (Terrorguard)
 			{spellID = 170996, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Staggering Shout
-			{spellID = 107566, unitID = "player", caster = "all", filter = "DEBUFF"},
+			--BETA {spellID = 107566, unitID = "player", caster = "all", filter = "DEBUFF"},
 
 			-- Slows
 			-- Infected Wounds
@@ -3750,7 +3092,7 @@ C["filger_spells"] = {
 			{spellID = 31589, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Frostbolt
 			{spellID = 116, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Frostfire Bolt
+			-- Flurry
 			{spellID = 44614, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Mind Flay
 			{spellID = 15407, unitID = "player", caster = "all", filter = "DEBUFF"},
@@ -3795,235 +3137,8 @@ C["filger_spells"] = {
 			-- Rocket Fuel Leak
 			{spellID = 94794, unitID = "player", caster = "player", filter = "DEBUFF"},
 
-			-- Raids: Legion
-			-- BETA: Tomb of Sargeras
-			-- Goroth
-			-- Shattering Star
-			{spellID = 233279, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Crashing Comet
-			{spellID = 230345, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Burning Armor
-			{spellID = 231363, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Demonic Inquistion
-			-- Unbearable Torment
-			{spellID = 233430, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Soul Corruption
-			{spellID = 248713, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Calcified Quills
-			{spellID = 233431, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Echoing Anguish
-			{spellID = 233983, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Harjatan
-			-- Aqueous Burst
-			{spellID = 231729, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Driven Assault
-			{spellID = 234128, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Dripping Wet
-			{spellID = 241573, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Drenched
-			{spellID = 231770, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Sickly Fixate
-			{spellID = 241600, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Mistress Sassz'ine
-			-- Hydra Shot
-			{spellID = 230139, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Befouling Ink
-			{spellID = 232913, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Sister of the Moon
-			-- Lunar Suffusion
-			{spellID = 234995, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Umbra Suffusion
-			{spellID = 234996, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Discorporate
-			{spellID = 236550, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Moon Burn
-			{spellID = 236519, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Incorporeal Shot
-			{spellID = 236304, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Lunar Beacon
-			{spellID = 236712, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Rapid Shot
-			{spellID = 236596, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- The Desolate Host
-			-- Spear of Anguish
-			{spellID = 235933, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Tormented Cries
-			{spellID = 235989, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Wither
-			{spellID = 236135, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Soulbind
-			{spellID = 236449, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shattering Scream
-			{spellID = 236515, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Maiden of Vigilance
-			-- Unstable Soul
-			{spellID = 240209, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Light Infusion
-			{spellID = 235213, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Fel Infusion
-			{spellID = 235240, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Creator's Grace
-			{spellID = 235534, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Demon's Vigor
-			{spellID = 235538, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Fallen Avatar
-			-- Dark Mark
-			{spellID = 239739, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shadowy Blades
-			{spellID = 236604, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Kil'jaeden
-			-- Bursting Dreadflame
-			{spellID = 238429, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shadow Reflection: Erupting
-			{spellID = 236710, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shadow Reflection: Wailing
-			{spellID = 236378, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Flaming Orb
-			{spellID = 239253, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Focused Dreadflame
-			{spellID = 238505, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Illidan's Sightless Gaze
-			{spellID = 241721, unitID = "player", caster = "all", filter = "DEBUFF"},
-
-			-- The Nighthold
-			-- Skorpyron
-			-- Broken Shard
-			{spellID = 204284, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Chronomatic Anomaly
-			-- Time Bomb
-			{spellID = 206617, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Trilliax
-			-- Succulent Feast
-			{spellID = 206838, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Stuffed
-			{spellID = 214573, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Sterilize
-			{spellID = 208499, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Arcing Bonds
-			{spellID = 208910, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Spellblade Aluriel
-			-- Mark of Frost
-			{spellID = 212531, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Searing Brand
-			{spellID = 213148, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Tichondrius
-			-- Carrion Plague
-			{spellID = 206480, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Brand of Argus
-			{spellID = 212794, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Essence of Night
-			{spellID = 206466, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Burning Soul
-			{spellID = 216040, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Krosus
-			-- Orb of Destruction
-			{spellID = 205344, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- High Botanist Tel'arn
-			-- Parasitic Fixate
-			{spellID = 218342, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Call of Night
-			{spellID = 218809, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Star Augur Etraeus
-			-- Star Sign: Wolf
-			{spellID = 205445, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Star Sign: Crab
-			{spellID = 205429, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Star Sign: Hunter
-			{spellID = 216345, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Star Sign: Dragon
-			{spellID = 216344, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Icy Ejection
-			{spellID = 206936, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Fel Ejection
-			{spellID = 205649, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Elisande
-			-- Fast Time
-			{spellID = 209166, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Slow Time
-			{spellID = 209165, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Conflexive Burst
-			{spellID = 209598, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Gul'dan
-			-- Flames of Sargeras
-			{spellID = 221606, unitID = "player", caster = "all", filter = "DEBUFF"},
-
-			-- Trial of Valor
-			-- Odyn
-			-- Storm of Justice
-			{spellID = 227807, unitID = "player", caster = "all", filter = "DEBUFF"},
-
-			-- The Emerald Nightmare
-			-- Unstable Decay
-			{spellID = 221028, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Nythendra
-			-- Infested
-			{spellID = 204504, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Rot
-			{spellID = 203096, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Il'gynoth, Heart of Corruption
-			-- Fixate
-			{spellID = 210099, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Spew Corruption
-			{spellID = 208929, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Cursed Blood
-			{spellID = 215128, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Erethe Renferal
-			-- Raking Talons
-			{spellID = 215582, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Wind Burn
-			{spellID = 218519, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Web of Pain
-			{spellID = 215307, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Necrotic Venom
-			{spellID = 215449, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Twisting Shadows
-			{spellID = 210850, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Shimmering Feather
-			{spellID = 212993, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Ursoc
-			-- Focused Gaze
-			{spellID = 198006, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Momentum
-			{spellID = 198108, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Dragons of Nightmare
-			-- Mark of Ysondre
-			{spellID = 203102, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Mark of Taerar
-			{spellID = 203121, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Mark of Emeriss
-			{spellID = 203125, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Mark of Lethon
-			{spellID = 203124, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Nightmare Bloom
-			{spellID = 207681, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Defiled Vines
-			{spellID = 203770, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Volatile Infection
-			{spellID = 203787, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Cenarius
-			-- Creeping Nightmares
-			{spellID = 210279, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Nightmare Javelin
-			{spellID = 211507, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Nightmare Brambles
-			{spellID = 210315, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Scorned Touch
-			{spellID = 211471, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Replenishing Roots
-			{spellID = 211612, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Xavius
-			-- Nightmare Blades
-			{spellID = 211802, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Dream Simulacrum
-			{spellID = 206005, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Tormenting Fixation
-			{spellID = 205771, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Corruption Meteor
-			{spellID = 224508, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Bonds of Terror
-			{spellID = 210451, unitID = "player", caster = "all", filter = "DEBUFF"},
-			-- Corruption: Descent into Madness
-			{spellID = 208431, unitID = "player", caster = "all", filter = "DEBUFF"},
+			-- Raids: Battle for Azeroth
+			
 		},
 		{
 			Name = "T_BUFF",
@@ -4040,7 +3155,7 @@ C["filger_spells"] = {
 			-- Desecrated Ground
 			{spellID = 115018, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Lichborne
-			{spellID = 49039, unitID = "target", caster = "all", filter = "BUFF"},
+			--BETA {spellID = 49039, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Icebound Fortitude
 			{spellID = 48792, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Pillar of Frost
@@ -4282,7 +3397,7 @@ C["filger_spells"] = {
 			-- Spell Reflection
 			{spellID = 23920, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Mass Spell Reflection
-			{spellID = 114028, unitID = "target", caster = "all", filter = "BUFF"},
+			--BETA {spellID = 114028, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Shield Wall
 			{spellID = 871, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Die by the Sword
@@ -4312,15 +3427,6 @@ C["filger_spells"] = {
 			{spellID = 173260, unitID = "target", caster = "all", filter = "BUFF"},
 
 			-- Player vs. Player
-			-- Ashran
-			-- Ancient Artifact
-			{spellID = 168506, unitID = "target", caster = "all", filter = "BUFF"},
-			-- Boulder Shield
-			{spellID = 169373, unitID = "target", caster = "all", filter = "BUFF"},
-			-- Scroll of Protection
-			{spellID = 171249, unitID = "target", caster = "all", filter = "BUFF"},
-			-- Star Root Tuber
-			{spellID = 161495, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Battlegrounds
 			-- Netherstorm Flag
 			{spellID = 34976, unitID = "target", caster = "all", filter = "BUFF"},
@@ -4332,15 +3438,13 @@ C["filger_spells"] = {
 			-- Seaforium Bombs
 			{spellID = 66271, unitID = "target", caster = "all", filter = "DEBUFF"},
 			-- Drinking in Arena
-			-- Ba'ruun's Bountiful Bloom
-			{spellID = 167268, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Drinking
 			{spellID = 80167, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Mage Food
 			{spellID = 167152, unitID = "target", caster = "all", filter = "BUFF"},
 
 			-- Mythic
-			--Sanguine Ichor
+			-- Sanguine Ichor
 			{spellID = 226510, unitID = "target", caster = "all", filter = "BUFF"},
 		},
 	},

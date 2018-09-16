@@ -373,7 +373,7 @@ local function UpdateName(self)
 end
 
 local function castColor(self, unit, name, castid)
-	if self.interrupt then
+	if self.notInterruptible then
 		self:SetStatusBarColor(0.78, 0.25, 0.25)
 		self.bg:SetColorTexture(0.78, 0.25, 0.25, 0.2)
 	else
@@ -382,46 +382,33 @@ local function castColor(self, unit, name, castid)
 	end
 end
 
-local function callback(event, nameplate, unit)
-	local unit = unit or "target"
-	local nameplate = C_NamePlate.GetNamePlateForUnit(unit)
-	if not nameplate then return end
-	local self = nameplate.ouf
+local function callback(self, event, unit)
+	if unit then
+		local name = UnitName(unit)
+		if name and T.PlateBlacklist[name] then
+			self:Hide()
+		else
+			self:Show()
+		end
 
-	local name = UnitName(unit)
-	if name and T.PlateBlacklist[name] then
-		self:Hide()
-	else
-		self:Show()
-	end
-
-	if UnitIsUnit(unit, "player") then
-		self.Power:Show()
-		self.Name:Hide()
-		self.Castbar:SetAlpha(0)
-		self.RaidIcon:SetAlpha(0)
-	else
-		self.Power:Hide()
-		self.Name:Show()
-		self.Castbar:SetAlpha(1)
-		self.RaidIcon:SetAlpha(1)
+		if UnitIsUnit(unit, "player") then
+			self.Power:Show()
+			self.Name:Hide()
+			self.Castbar:SetAlpha(0)
+			self.RaidTargetIndicator:SetAlpha(0)
+		else
+			self.Power:Hide()
+			self.Name:Show()
+			self.Castbar:SetAlpha(1)
+			self.RaidTargetIndicator:SetAlpha(1)
+		end
 	end
 end
 
 local function style(self, unit)
 	local nameplate = C_NamePlate.GetNamePlateForUnit(unit)
 	local main = self
-	nameplate.ouf = self
 	self.unit = unit
-	self:SetScript("OnEnter", function()
-		ShowUIPanel(GameTooltip)
-		GameTooltip:SetOwner(self, "ANCHOR_NONE")
-		GameTooltip:SetUnit(self.unit)
-		GameTooltip:Show()
-	end)
-	self:SetScript("OnLeave", function()
-		GameTooltip:Hide()
-	end)
 
 	self:SetPoint("CENTER", nameplate, "CENTER")
 	self:SetSize(C.nameplate.width * T.noscalemult, C.nameplate.height * T.noscalemult)
@@ -460,6 +447,7 @@ local function style(self, unit)
 	self.Power:SetPoint("BOTTOMRIGHT", self.Health, "BOTTOMRIGHT", 0, -6-(C.nameplate.height * T.noscalemult / 2))
 	self.Power.frequentUpdates = true
 	self.Power.colorPower = true
+	self.Power.PostUpdate = T.PreUpdatePower
 	CreateVirtualFrame(self.Power)
 
 	self.Power.bg = self.Power:CreateTexture(nil, "BORDER")
@@ -536,9 +524,9 @@ local function style(self, unit)
 	CreateVirtualFrame(self.Castbar, self.Castbar.Icon)
 
 	-- Raid Icon
-	self.RaidIcon = self:CreateTexture(nil, "OVERLAY", nil, 7)
-	self.RaidIcon:SetSize((C.nameplate.height * 2 * T.noscalemult) + 8, (C.nameplate.height * 2 * T.noscalemult) + 8)
-	self.RaidIcon:SetPoint("BOTTOM", self.Health, "TOP", 0, C.nameplate.track_auras == true and 38 or 16)
+	self.RaidTargetIndicator = self:CreateTexture(nil, "OVERLAY", nil, 7)
+	self.RaidTargetIndicator:SetSize((C.nameplate.height * 2 * T.noscalemult) + 8, (C.nameplate.height * 2 * T.noscalemult) + 8)
+	self.RaidTargetIndicator:SetPoint("BOTTOM", self.Health, "TOP", 0, C.nameplate.track_auras == true and 38 or 16)
 
 	-- Create Class Icon
 	if C.nameplate.class_icons == true then
@@ -569,26 +557,34 @@ local function style(self, unit)
 	end
 
 	-- Aura tracking
-	if C.nameplate.track_auras == true then
+	if C.nameplate.track_auras == true or C.nameplate.track_buffs == true then
 		self.Auras = CreateFrame("Frame", nil, self)
-		self.Auras:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 2 * T.noscalemult, C.font.nameplates_font_size + 7)
+		self.Auras:SetPoint("BOTTOMRIGHT", self.Health, "TOPRIGHT", 0, C.font.nameplates_font_size + 7)
 		self.Auras.initialAnchor = "BOTTOMRIGHT"
 		self.Auras["growth-y"] = "UP"
 		self.Auras["growth-x"] = "LEFT"
-		self.Auras.numDebuffs = 6
-		self.Auras.numBuffs = 0
+		self.Auras.numDebuffs = C.nameplate.track_auras and 6 or 0
+		self.Auras.numBuffs = C.nameplate.track_buffs and 4 or 0
 		self.Auras:SetSize(20 + C.nameplate.width, C.nameplate.auras_size)
-		self.Auras.spacing = 2
-		self.Auras.size = C.nameplate.auras_size
+		self.Auras.spacing = 5* T.noscalemult
+		self.Auras.size = C.nameplate.auras_size * T.noscalemult - 3
 
-		self.Auras.CustomFilter = function(icons, unit, icon, name, rank, texture, count, dispelType, duration, expiration, caster, isStealable, nameplateShowSelf, spellID, canApply, isBossDebuff, casterIsPlayer, nameplateShowAll)
+		self.Auras.CustomFilter = function(icons, unit, icon, name, texture, count, dispelType, duration, expiration, caster, isStealable, nameplateShowSelf, spellID, canApply, isBossDebuff, casterIsPlayer, nameplateShowAll)
 			local allow = false
 
 			if caster == "player" then
-				if ((nameplateShowAll or nameplateShowSelf) and not T.DebuffBlackList[name]) then
-					allow = true
-				elseif T.DebuffWhiteList[name] then
-					allow = true
+				if UnitIsUnit(unit, "player") then
+					if ((nameplateShowAll or nameplateShowSelf) and not T.BuffBlackList[name]) then
+						allow = true
+					elseif T.BuffWhiteList[name] then
+						allow = true
+					end
+				else
+					if ((nameplateShowAll or nameplateShowSelf) and not T.DebuffBlackList[name]) then
+						allow = true
+					elseif T.DebuffWhiteList[name] then
+						allow = true
+					end
 				end
 			end
 
@@ -596,20 +592,17 @@ local function style(self, unit)
 		end
 
 		self.Auras.PostCreateIcon = function(element, button)
-			button:SetScale(T.noscalemult)
-			button:SetTemplate("Default")
+			CreateVirtualFrame(button)
 			button:EnableMouse(false)
 
-			button.remaining = T.SetFontString(button, C.font.auras_font, C.font.auras_font_size, C.font.auras_font_style)
+			button.remaining = T.SetFontString(button, C.font.auras_font, C.font.auras_font_size * T.noscalemult, C.font.auras_font_style)
 			button.remaining:SetShadowOffset(C.font.auras_font_shadow and 1 or 0, C.font.auras_font_shadow and -1 or 0)
-			button.remaining:SetPoint("CENTER", button, "CENTER", 1, 1)
+			button.remaining:SetPoint("CENTER", button, "CENTER", 1, 0)
 			button.remaining:SetJustifyH("CENTER")
 
 			button.cd.noOCC = true
 			button.cd.noCooldownCount = true
 
-			button.icon:SetPoint("TOPLEFT", 2, -2)
-			button.icon:SetPoint("BOTTOMRIGHT", -2, 2)
 			button.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 
 			button.count:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", 1, 0)
@@ -620,8 +613,6 @@ local function style(self, unit)
 			if C.aura.show_spiral == true then
 				element.disableCooldown = false
 				button.cd:SetReverse(true)
-				button.cd:SetPoint("TOPLEFT", button, "TOPLEFT", 2, -2)
-				button.cd:SetPoint("BOTTOMRIGHT", button, "BOTTOMRIGHT", -2, 2)
 				button.parent = CreateFrame("Frame", nil, button)
 				button.parent:SetFrameLevel(button.cd:GetFrameLevel() + 1)
 				button.count:SetParent(button.parent)
@@ -632,7 +623,7 @@ local function style(self, unit)
 		end
 
 		self.Auras.PostUpdateIcon = function(icons, unit, icon, index, offset, filter, isDebuff, duration, timeLeft)
-			local _, _, _, _, dtype, duration, expirationTime, _, isStealable = UnitAura(unit, index, icon.filter)
+			local _, _, _, dtype, duration, expirationTime, _, isStealable = UnitAura(unit, index, icon.filter)
 
 			if duration and duration > 0 and C.aura.show_timer == true then
 				icon.remaining:Show()
@@ -704,5 +695,6 @@ local function style(self, unit)
 	self:RegisterEvent("PLAYER_TARGET_CHANGED", UpdateTarget)
 end
 
-oUF:RegisterStyle("ShestakUINameplate", style)
-oUF:SpawnNamePlates("ShestakUINameplate", "ShestakUI", callback)
+oUF:RegisterStyle("ShestakNameplates", style)
+oUF:SetActiveStyle("ShestakNameplates")
+oUF:SpawnNamePlates("ShestakNameplates", callback)

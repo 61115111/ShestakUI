@@ -129,7 +129,6 @@ C["skins"] = {
 	["ovale"] = false,							-- OvaleSpellPriority skin
 	["clique"] = false,							-- Clique skin
 	["ace3"] = false,							-- Ace3 options elements skin
-	["pallypower"] = false,						-- PallyPower skin
 	["capping"] = false,						-- Capping skin
 	["cool_line"] = false,						-- CoolLine skin
 	["atlasloot"] = false,						-- AtlasLoot skin
@@ -273,7 +272,6 @@ C["tooltip"] = {
 	["item_count"] = false,						-- Item count in tooltip
 	["unit_role"] = false,						-- Unit role in tooltip
 	["instance_lock"] = false,					-- Your instance lock status in tooltip
-	["item_transmogrify"] = false,				-- Displays items can not be transmogrified
 }
 
 ----------------------------------------------------------------------------------------
@@ -366,6 +364,7 @@ C["nameplate"] = {
 	["bad_color"] = {1, 0, 0},					-- Bad threat color
 	["offtank_color"] = {0, 0.5, 1},			-- Offtank threat color
 	["track_auras"] = false,					-- Show debuffs (from the list)
+	["track_buffs"] = false,					-- Show buffs above player nameplate (from the list)
 	["auras_size"] = 25,						-- Debuffs size
 	["healer_icon"] = false,					-- Show icon above enemy healers nameplate in battlegrounds
 	["totem_icons"] = false,					-- Show icon above enemy totems nameplate
@@ -392,13 +391,13 @@ C["actionbar"] = {
 	["rightbars"] = 3,							-- Number of action bars on right (0, 1, 2 or 3)
 	["rightbars_mouseover"] = true,				-- Right bars on mouseover
 	-- Pet bar
-	["petbar_mouseover"] = false,				-- Pet bar on mouseover(only for horizontal pet bar)
 	["petbar_hide"] = false,					-- Hide pet bar
 	["petbar_horizontal"] = false,				-- Enable horizontal pet bar
+	["petbar_mouseover"] = false,				-- Pet bar on mouseover(only for horizontal pet bar)
 	-- Stance bar
-	["stancebar_mouseover"] = true,				-- Stance bar on mouseover
 	["stancebar_hide"] = false,					-- Hide stance bar
 	["stancebar_horizontal"] = true,			-- Enable horizontal stance bar
+	["stancebar_mouseover"] = true,				-- Stance bar on mouseover(only for horizontal stance bar)
 	-- MicroMenu
 	["micromenu"] = false,						-- Enable micro menu
 	["micromenu_mouseover"] = false,			-- Micro menu on mouseover
@@ -428,7 +427,7 @@ C["aura"] = {
 --	Filger options
 ----------------------------------------------------------------------------------------
 C["filger"] = {
-	["enable"] = true,							-- Enable Filger
+	["enable"] = false,							-- Enable Filger (fps isssue)
 	["test_mode"] = false,						-- Test icon mode
 	["max_test_icon"] = 5,						-- The number of icons to the test
 	["show_tooltip"] = false,					-- Show tooltip
@@ -480,7 +479,6 @@ C["unitframe"] = {
 	["plugins_swing"] = false,					-- Swing bar
 	["plugins_reputation_bar"] = false,			-- Reputation bar
 	["plugins_experience_bar"] = false,			-- Experience bar
-	["plugins_friendship_bar"] = false,			-- Friendship bar
 	["plugins_artifact_bar"] = false,			-- Artifact Power bar
 	["plugins_smooth_bar"] = false,				-- Smooth bar
 	["plugins_enemy_spec"] = false,				-- Enemy specialization
@@ -531,7 +529,7 @@ C["raidframe"] = {
 	["icons_role"] = false,						-- Role icon on frames
 	["icons_raid_mark"] = true,					-- Raid mark icons on frames
 	["icons_ready_check"] = true,				-- Ready check icons on frames
-	["icons_leader"] = true,					-- Leader icon, assistant icon, master loot icon on frames
+	["icons_leader"] = true,					-- Leader icon and assistant icon on frames
 	-- Plugins
 	["plugins_debuffhighlight_icon"] = false,	-- Debuff highlight texture + icon
 	["plugins_aura_watch"] = true,				-- Raid debuff icons (from the list)
